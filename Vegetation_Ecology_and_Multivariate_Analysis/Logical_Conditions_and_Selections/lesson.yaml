@@ -1,0 +1,245 @@
+- Class: meta
+  Course: Vegetation Ecology and Multivariate Analysis
+  Lesson: Logical Conditions and Selections
+  Author: Friedemann von Lampe, inspired by courses from Nick Carchedi, dataset from RLab
+  Type: Standard
+  Organization: Georg-August-University Göttingen
+  Version: 2.4.5
+  
+  
+- Class: text
+  Output: "Welcome to the third lesson. In this lesson you will learn how to select subsets of your dataset. The focus will be on the use of logical conditions to select observations from the dataframe. We'll continue with our agro-forestry dataset from the last lesson."
+  
+- Class: text
+  Output: 'If you want to cancel a course, you can type "bye()" or press the escape key. If one of these functions does not work, try the other variant. This way you end the package "swirl", to start "swirl" again, start again with the input of swirl().'
+  
+- Class: cmd_question
+  Output: 'Last lesson you learned that each column of a dataframe represents a vector. We want to start with a vector. The "af"-dataframe is already loaded in the Workspace. Please assign the variable "north" from the dataframe to a new vector called "north"'
+  CorrectAnswer: north <- af$north
+  AnswerTests: omnitest(correctExpr = 'north <- af$north')
+  Hint: Remember how to select a variable from a dataframe. Type north <- af$north. 
+  
+- Class: cmd_question
+  Output: 'Type north now to see what it looks like. The variable represents a cosinus-transformation of the exposition (in degrees) which we can call northness. It is a value between -1 and 1, where 1 represents total north exposition (360/0 degrees) and -1 total south exposition (180 degrees) of the plot.'
+  CorrectAnswer: north
+  AnswerTests: omnitest(correctExpr = 'north')
+  Hint: Type north to view its contents.
+
+- Class: text
+  Output: The way you tell R that you want to select some particular elements (i.e. a 'subset') from a vector is by placing an 'index vector' in square brackets immediately following the name of the vector.
+
+- Class: cmd_question
+  Output: For a simple example, try north[1:10] to view the first ten elements of x.
+  CorrectAnswer: north[1:10]
+  AnswerTests: omnitest(correctExpr='north[1:10]')
+  Hint: View the first ten elements of north with north[1:10].
+  
+- Class: text
+  Output: Remember, in R, NA is used to represent any value that is 'not available' or 'missing' (in the statistical sense). Missing values play an important role in statistics and data analysis. Often, missing values must not be ignored, but rather they should be carefully studied to see if there's an underlying pattern or cause for their missingness. Many functions do not work with missing values, so they need to be omited with specific arguments (if available) or filtered out before. 
+
+- Class: text
+  Output: Let's start by indexing with logical vectors. One common scenario when working with data is that we want to extract all elements of a vector that are not NA (i.e. missing data). The is.na() function tells us whether each element of an object is NA. So, the function is.na(north) yields a vector of logical values the same length as north, with TRUEs corresponding to NA values in x and FALSEs corresponding to non-NA values in x.
+  
+- Class: cmd_question
+  Output: Try it and type is.na(north).
+  CorrectAnswer: is.na(north)
+  AnswerTests: omnitest(correctExpr='is.na(north)')
+  Hint: Type is.na(north) to check which elements of north are NA
+  
+- Class: text
+  Output: "If you compare the result with the original vector you called before (scroll up, if you don't see it anymore), you will see, that the result is TRUE for all NA values"
+  
+
+- Class: mult_question
+  Output: Thinking of subsetting using square brackets. What do you think north[is.na(north)] will give you?
+  AnswerChoices: A vector of all NAs; A vector with no NAs; A vector of TRUEs and FALSEs; A vector of length 0
+  CorrectAnswer: A vector of all NAs
+  AnswerTests: omnitest(correctVal="A vector of all NAs")
+  Hint: Remember that is.na(north) tells us where the NAs are in a vector. So if we subset north based on that, what do you expect to happen?
+
+- Class: cmd_question
+  Output: Prove it to yourself by typing north[is.na(north)].
+  CorrectAnswer: north[is.na(north)]
+  AnswerTests: omnitest(correctExpr='north[is.na(north)]')
+  Hint: Type north[is.na(north)] to see that you get all NAs, which is clearly not what we want!
+
+- Class: cmd_question
+  Output: If we use `!` we get the negation of a logical expression, so !is.na(x) can be read as 'is not NA'. Therefore, if we want to create a vector called y that contains all of the non-NA values from north, we can use y <- north[!is.na(north)]. Give it a try.
+  CorrectAnswer: y <- north[!is.na(north)]
+  AnswerTests: omnitest(correctExpr='y <- north[!is.na(north)]')
+  Hint: Type y <- north[!is.na(north)] to capture all non-missing values from x.
+
+- Class: cmd_question
+  Output: Print y to the console.
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: Type y to view its contents.
+
+- Class: text
+  Output: Now that we've isolated the non-missing values of north and put them in y, we can subset y as we please.
+  
+
+- Class: mult_question
+  Output: Recall that the expression y > 0 will give us a vector of logical values the same length as y, with TRUEs corresponding to values of y that are greater than zero and FALSEs corresponding to values of y that are less than or equal to zero. What do you think y[y > 0] will give you?
+  AnswerChoices: A vector of all the positive elements of y; A vector of all the negative elements of y; A vector of all NAs; A vector of length 0; A vector of TRUEs and FALSEs
+  CorrectAnswer: A vector of all the positive elements of y
+  AnswerTests: omnitest(correctVal="A vector of all the positive elements of y")
+  Hint: The logical expression y > 0 will give us TRUE for each element of y that is positive. Based on that, what do you think y[y > 0] will return?
+
+- Class: cmd_question
+  Output: Type y[y > 0] to see that we get all of the positive elements of y, which are also the positive elements of our original vector north.
+  CorrectAnswer: y[y > 0]
+  AnswerTests: omnitest(correctExpr='y[y > 0]')
+  Hint: Type y[y > 0] to view only the positive elements of y.
+  
+- Class: text
+  Output: Apparently most of the plots were south exposed and we have only 4 slightly north exposed plots. 
+
+- Class: cmd_question
+  Output: You might wonder why we didn't just start with north[north > 0] to isolate the positive elements of north. Try that now to see why.
+  CorrectAnswer: north[north > 0]
+  AnswerTests: omnitest(correctExpr='north[north > 0]')
+  Hint: Try north[north > 0] to see why we didn't use this approach.
+
+- Class: text
+  Output: Since NA is not a value, but rather a placeholder for an unknown quantity, the expression NA > 0 evaluates to NA. Hence we get a bunch of NAs mixed in with our positive numbers when we do this.
+
+- Class: text
+  Output: Creating logical expressions requires logical operators. You're already familiar with 
+    arithmetic operators like `+`, `-`, `*`, and `/`. Logical operators are e.g. '==' (EQUAL), '!=' (UNEQUAL), '>' (GREATER THAN), '<' (SMALLER THAN), '&' (AND) or '|' (OR). We are first going to use the '&' operator. 
+
+
+- Class: cmd_question
+  Output: "Combining the logical operator '&' with our new knowledge of subsetting, we could do this -- north[!is.na(north) & north > 0]. Try it out."
+  CorrectAnswer: north[!is.na(north) & north > 0]
+  AnswerTests: omnitest(correctExpr='north[!is.na(north) & north > 0]')
+  Hint: Try north[!is.na(north) & north > 0] to see what you get.
+
+- Class: text
+  Output: In this case, we request only values of x that are both non-missing AND greater than zero.
+
+- Class: text
+  Output: I've already shown you how to subset just the first ten values of x using north[1:10]. In this case, we're providing a vector of positive integers inside of the square brackets, which tells R to return only the elements of x numbered 1 through 10.
+
+- Class: text
+  Output: Many programming languages use what's called 'zero-based indexing', which means that the first element of a vector is considered element 0. R uses 'one-based indexing', which (you guessed it!) means the first element of a vector is considered element 1.
+
+- Class: cmd_question
+  Output: Can you figure out how we'd subset the 3rd, 5th, and 7th elements of north? Hint -- Use the c() function to specify the element numbers as a numeric vector.
+  CorrectAnswer: north[c(3, 5, 7)]
+  AnswerTests: omnitest(correctExpr='north[c(3, 5, 7)]')
+  Hint: Create a vector of indexes with c(3, 5, 7), then put that inside of the square brackets.
+
+- Class: text
+  Output: What if we're interested in all elements of north EXCEPT the 2nd and 10th? It would be pretty tedious to construct a vector containing all numbers 1 through 119 EXCEPT 2 and 10.
+
+- Class: cmd_question
+  Output: Luckily, R accepts negative integer indexes. Whereas north[c(2, 10)] gives us ONLY the 2nd and 10th elements of north, north[c(-2, -10)] gives us all elements of north EXCEPT for the 2nd and 10 elements.  Try north[c(-2, -10)] now to see this.
+  CorrectAnswer: north[c(-2, -10)]
+  AnswerTests: omnitest(correctExpr='north[c(-2, -10)]')
+  Hint: Give north[c(-2, -10)] a try.
+
+- Class: cmd_question
+  Output: A shorthand way of specifying multiple negative numbers is to put the negative sign out in front of the vector of positive numbers. Type north[-c(2, 10)] to get the exact same result.
+  CorrectAnswer: north[-c(2, 10)]
+  AnswerTests: omnitest(correctExpr='north[-c(2, 10)]')
+  Hint: Use north[-c(2, 10)] to simply things a bit. This could be a time saver if specifying many negative indexes.
+
+- Class: text
+  Output: "So far, we've covered how to select elements from vectors. All of these functions work as well for a whole dataframe. The only difference is, that a dataframe has 2 dimensions (rows and columns). Therefore we need to define values for both in the square brackets as follows: df[rows, colums]"
+
+- Class: cmd_question
+  Output: Remember how you selected a single value from the af dataframe. Try to select the second row of the column area_nr.  
+  CorrectAnswer: af[2, 1]
+  AnswerTests: any_of_exprs('af$area_nr', 'af[2, 1]')
+  Hint: In which column is the variable area_nr? You want to select the second row of this columns.
+  
+- Class: mult_question
+  Output: 'In the study design not all variables were sampled for the biotope type "both" (variable "bt") resulting in many NAs. Now we want to create a subset without this biotope type. Which of the following options seems reasonable to you?'
+  AnswerChoices: af[af$bt != "both", ]; af[af$bt == "both", ]; af[af$bt & "both", ]
+  CorrectAnswer: af[af$bt != "both", ]
+  AnswerTests: omnitest(correctVal='af[af$bt != "both", ]')
+  Hint: "The logical operator '!=' means UNEQAL."
+  
+- Class: cmd_question
+  Output: 'Lets try it out. Select all samples NOT belonging to biotope type "both" and store them into a new dataframe called "af_s"'
+  CorrectAnswer: af_s <- af[af$bt != "both", ]
+  AnswerTests: omnitest(correctExpr= 'af_s <- af[af$bt != "both", ]')
+  Hint: Look at the question before. Apply this selection and assign the result to an object called 'af_s'
+  
+- Class: cmd_question
+  Output: 'Now you can see a new dataframe with 95 observations in the workspace. Have a look on it by clicking on it'
+  CorrectAnswer: View(af_s)
+  AnswerTests: omnitest(correctVal = View(af_s))
+  Hint: Click on the dataframe af_s in the Environment or type 'View(af_s)'
+  
+- Class: cmd_question
+  Output: 'Lets check if there are any NAs left in this new dataframe. To you remember the function? Apply it on the dataframe'
+  CorrectAnswer: is.na(af_s)
+  AnswerTests: omnitest(correctExpr= 'is.na(af_s)')
+  Hint: The function is called is.na(). Apply it on the new dataframe.
+  
+- Class: cmd_question
+  Output: 'OK, now we see many many FALSE values. But are there really no TRUEs left? They would be easily overlooked. To check you can use the function which(). It asks "Which indices are TRUE?". Type which(is.na(af_s))'
+  CorrectAnswer: which(is.na(af_s))
+  AnswerTests: omnitest(correctExpr= 'which(is.na(af_s))')
+  Hint: Type which(is.na(af_s))
+  
+- Class: mult_question
+  Output: Are there any NAs left?
+  AnswerChoices: Yes; No; Maybe
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal="No")
+  Hint: Try to interpret the result of the function which(). It gives you the indices of the elements which are TRUE. If no index numbers are given, the result is empty (length zero). 
+  
+- Class: text
+  Output: "Very well. Now we will continue with our new subset in dataframe 'af_s'"
+  
+- Class: mult_question
+  Output: Sticking with the north value. If we want to select all observations of 'af_s' which have a southern exposition (i.e. north value greater than zero) - what do you think would be the right expression?
+  AnswerChoices: af_s[af_s$north > 0, ]; af_s[ ,af_s$north > 0]; af_s$north > 0
+  CorrectAnswer: af_s[af_s$north > 0, ]
+  AnswerTests: omnitest(correctVal='af_s[af_s$north > 0, ]')
+  Hint: The logical expression af_s$north > 0 will give us TRUE for each element of af_s$north that is positive. Based on that, what do you think could a selection in the dataframe look like? Remember the dimensions and where to put rows and columns.
+
+- Class: text
+  Output: Very well. As we want to show all columns of our observations selected with logical criteria, we need to leave the second element in the square brackets (indicating columns) empty. That means, all columns for the selected observations should be included.
+  
+- Class: cmd_question
+  Output: "Now, we want to use the '==' operator, which means EQUAL. Based on what you just learned, try to apply it to select all observations with a north value of exact -1 (i.e. south exposition)." 
+  CorrectAnswer:  af_s[af_s$north == -1, ]
+  AnswerTests: omnitest(correctExpr= 'af_s[af_s$north == -1, ]') 
+  Hint: Enter af_s[af_s$north == -1, ] in the Console.
+  
+
+- Class: cmd_question
+  Output: "Sometimes you want to know which rows of the dataframe correspond to your selection. Therefore you can again use the function which(). Try which(af_s$north == -1) to find out which rows have a north value of -1."
+  CorrectAnswer:  which(af_s$north == -1)
+  AnswerTests: omnitest(correctExpr = 'which(af_s$north == -1)') 
+  Hint: Enter which(af_s$north == -1) in the console.
+
+- Class: cmd_question
+  Output: "How many observations have a north value of -1? Enter the number. Tip: You can count manually or use the function length() to calculate the length of a vector."  
+  CorrectAnswer: 8
+  AnswerTests: omnitest(correctVal = 8)
+  Hint: Use length(which(af_s$north == -1)) to calculate the number ob observations. 
+
+- Class: mult_question
+  Output: Imagine you would like to select all observations with a pH value >6 and <5. How could you do this?
+  AnswerChoices: af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]; af_s[af_s$pH_H2O > 6 & af_s$pH_H2O < 5), ]
+  CorrectAnswer: af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]
+  AnswerTests: omnitest(correctVal="af_s[af_s$pH_H2O > 6 | af_s$pH_H2O < 5), ]")
+  Hint: Think - can both conditions for the pH values be TRUE at the same time?
+  
+- Class: text
+  Output: Always think about which conditions can really be TRUE at the same time. A pH value cannot be smaller than 5 AND greater than 6 at the same time - only one condition can (and needs to be) TRUE for this selection. 
+
+- Class: text
+  Output: Now you know some methods of subsetting data from vectors and dataframes. Different approaches are best in different scenarios and when in doubt, try it out!
+  
+
+    
+    
+    
+    
+

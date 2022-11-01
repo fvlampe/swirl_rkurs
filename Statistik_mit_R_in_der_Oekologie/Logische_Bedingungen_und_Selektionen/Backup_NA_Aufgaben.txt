@@ -1,0 +1,130 @@
+- Class: cmd_question
+  Output: 'Gib jetzt "north" ein um zu sehen, wie der Vektor aussieht. Die Variable stellt eine Cosinus-Transformation der Exposition (in Grad) dar, die wir "northness" nennen. Es handelt sich um einen Wert zwischen -1 und 1, wobei 1 die gesamte Nordausrichtung (360/0 Grad) und -1 die gesamte Südausrichtung (180 Grad) des Plots darstellt.'
+  CorrectAnswer: north
+  AnswerTests: omnitest(correctExpr = 'north')
+  Hint: 'Gib einfach "north"" ein, um den Inhalt anzeigen zu lassen.'
+
+- Class: text
+  Output: 'Du teilst R mit, dass du nur einige bestimmte Elemente (d. h. eine „Teilmenge“) aus einem Vektor auswählen möchten, indem du einen „Indexvektor“ in eckige Klammern unmittelbar nach dem Namen des Vektors setzen.'
+
+- Class: cmd_question
+  Output: 'Versuche als einfaches Beispiel north[1:10], um die ersten zehn Elemente von x anzuzeigen.'
+  CorrectAnswer: north[1:10]
+  AnswerTests: omnitest(correctExpr='north[1:10]')
+  Hint: 'Mit north[1:10] lannst du dir die ersten zehn Elemente von north anzeigen lassen.'
+  
+'- Class: text
+  Output: 'Denke daran, dass NA in R verwendet wird, um jeden Wert darzustellen, der „nicht verfügbar“ oder „fehlend“ ist (im statistischen Sinne). Fehlende Werte spielen eine wichtige Rolle in der Statistik und Datenanalyse. Häufig dürfen fehlende Werte nicht ignoriert werden, sondern sollten sorgfältig untersucht werden, um festzustellen, ob es ein zugrunde liegendes Muster oder eine Ursache für ihr Fehlen gibt. Viele Funktionen funktionieren mit fehlenden Werten nicht, daher müssen sie mit bestimmten Argumenten (falls vorhanden) weggelassen oder vorher herausgefiltert werden.' 
+
+- Class: text
+  Output: 'Fangen wir mit der Indizierung mit logischen Vektoren an. Ein häufiges Szenario bei der Arbeit mit Daten ist, dass wir alle Elemente eines Vektors extrahieren möchten, die nicht NA sind (d. h. fehlende Daten). Die Funktion is.na() teilt uns mit, ob jedes Element eines Objekts NA ist. Die Funktion is.na(north) ergibt also einen Vektor aus logischen Werten, die dieselbe Länge wie north haben, wobei TRUEs NA-Werten in x entsprechen und FALSE Nicht-NA-Werten in x entsprechen.'
+  
+- Class: cmd_question
+  Output: Try it and type is.na(north).
+  CorrectAnswer: is.na(north)
+  AnswerTests: omnitest(correctExpr='is.na(north)')
+  Hint: Type is.na(north) to check which elements of north are NA
+  
+- Class: text
+  Output: "If you compare the result with the original vector you called before (scroll up, if you don't see it anymore), you will see, that the result is TRUE for all NA values"
+  
+
+- Class: mult_question
+  Output: Thinking of subsetting using square brackets. What do you think north[is.na(north)] will give you?
+  AnswerChoices: A vector of all NAs; A vector with no NAs; A vector of TRUEs and FALSEs; A vector of length 0
+  CorrectAnswer: A vector of all NAs
+  AnswerTests: omnitest(correctVal="A vector of all NAs")
+  Hint: Remember that is.na(north) tells us where the NAs are in a vector. So if we subset north based on that, what do you expect to happen?
+
+- Class: cmd_question
+  Output: Prove it to yourself by typing north[is.na(north)].
+  CorrectAnswer: north[is.na(north)]
+  AnswerTests: omnitest(correctExpr='north[is.na(north)]')
+  Hint: Type north[is.na(north)] to see that you get all NAs, which is clearly not what we want!
+
+- Class: cmd_question
+  Output: If we use `!` we get the negation of a logical expression, so !is.na(x) can be read as 'is not NA'. Therefore, if we want to create a vector called y that contains all of the non-NA values from north, we can use y <- north[!is.na(north)]. Give it a try.
+  CorrectAnswer: y <- north[!is.na(north)]
+  AnswerTests: omnitest(correctExpr='y <- north[!is.na(north)]')
+  Hint: Type y <- north[!is.na(north)] to capture all non-missing values from x.
+
+- Class: cmd_question
+  Output: Print y to the console.
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: Type y to view its contents.
+
+- Class: text
+  Output: Now that we've isolated the non-missing values of north and put them in y, we can subset y as we please.
+
+
+....
+
+
+- Class: cmd_question
+  Output: 'You might wonder why we didn't just start with north[north > 0] to isolate the positive elements of north. Try that now to see why.'
+  CorrectAnswer: north[north > 0]
+  AnswerTests: omnitest(correctExpr='north[north > 0]')
+  Hint: Try north[north > 0] to see why we didn't use this approach.
+
+- Class: text
+  Output: Since NA is not a value, but rather a placeholder for an unknown quantity, the expression NA > 0 evaluates to NA. Hence we get a bunch of NAs mixed in with our positive numbers when we do this.
+
+- Class: text
+  Output: Creating logical expressions requires logical operators. You're already familiar with 
+    arithmetic operators like `+`, `-`, `*`, and `/`. Logical operators are e.g. '==' (EQUAL), '!=' (UNEQUAL), '>' (GREATER THAN), '<' (SMALLER THAN), '&' (AND) or '|' (OR). We are first going to use the '&' operator. 
+
+
+- Class: cmd_question
+  Output: "Combining the logical operator '&' with our new knowledge of subsetting, we could do this -- north[!is.na(north) & north > 0]. Try it out."
+  CorrectAnswer: north[!is.na(north) & north > 0]
+  AnswerTests: omnitest(correctExpr='north[!is.na(north) & north > 0]')
+  Hint: Try north[!is.na(north) & north > 0] to see what you get.
+
+- Class: text
+  Output: In this case, we request only values of x that are both non-missing AND greater than zero.
+
+
+....
+
+
+- Class: mult_question
+  Output: 'In the study design not all variables were sampled for the biotope type "both" (variable "bt") resulting in many NAs. Now we want to create a subset without this biotope type. Which of the following options seems reasonable to you?'
+  AnswerChoices: af[af$bt != "both", ]; af[af$bt == "both", ]; af[af$bt & "both", ]
+  CorrectAnswer: af[af$bt != "both", ]
+  AnswerTests: omnitest(correctVal='af[af$bt != "both", ]')
+  Hint: "The logical operator '!=' means UNEQAL."
+
+- Class: cmd_question
+  Output: 'Lets try it out. Select all samples NOT belonging to biotope type "both" and store them into a new dataframe called "af_s"'
+  CorrectAnswer: af_s <- af[af$bt != "both", ]
+  AnswerTests: omnitest(correctExpr= 'af_s <- af[af$bt != "both", ]')
+  Hint: Look at the question before. Apply this selection and assign the result to an object called 'af_s'
+  
+- Class: cmd_question
+  Output: 'Now you can see a new dataframe with 95 observations in the workspace. Have a look on it by clicking on it'
+  CorrectAnswer: View(af_s)
+  AnswerTests: omnitest(correctVal = View(af_s))
+  Hint: Click on the dataframe af_s in the Environment or type 'View(af_s)'
+  
+- Class: cmd_question
+  Output: 'Lets check if there are any NAs left in this new dataframe. To you remember the function? Apply it on the dataframe'
+  CorrectAnswer: is.na(af_s)
+  AnswerTests: omnitest(correctExpr= 'is.na(af_s)')
+  Hint: The function is called is.na(). Apply it on the new dataframe.
+  
+- Class: cmd_question
+  Output: 'OK, now we see many many FALSE values. But are there really no TRUEs left? They would be easily overlooked. To check you can use the function which(). It asks "Which indices are TRUE?". Type which(is.na(af_s))'
+  CorrectAnswer: which(is.na(af_s))
+  AnswerTests: omnitest(correctExpr= 'which(is.na(af_s))')
+  Hint: Type which(is.na(af_s))
+  
+- Class: mult_question
+  Output: Are there any NAs left?
+  AnswerChoices: Yes; No; Maybe
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal="No")
+  Hint: Try to interpret the result of the function which(). It gives you the indices of the elements which are TRUE. If no index numbers are given, the result is empty (length zero). 
+  
+- Class: text
+  Output: "Very well. Now we will continue with our new subset in dataframe 'af_s'"

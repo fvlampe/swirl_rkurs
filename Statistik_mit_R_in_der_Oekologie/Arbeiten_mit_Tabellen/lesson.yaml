@@ -1,0 +1,356 @@
+- Class: meta
+  Course: Statistik mit R in der Oekologie
+  Lesson: Arbeiten mit Tabellen
+  Author: Friedemann von Lampe, based on courses by RLab Team 
+  Type: Standard
+  Organization: Georg-August-University Göttingen
+  Version: 2.4.5
+  
+  
+- Class: text
+  Output: 'Willkommen zur zweiten Lektion, in der du lernst, wie du Datentabellen in R laden kannst. 
+    An dieser Stelle empfehlen wir natürlich, dass du dein eigenes RStudio-Projekt für 
+    unseren Kurs erstellst sowie alle Daten heruntergeladst und extrahierst in einen Unterordner "data"  
+    in deinem Projektordner. Wenn du das noch nicht getan hast, kannst du diese Lektion trotzdem 
+    durchführen, solange du Zugriff auf den Agroforstdatensatz hast. Bei Fragen oder Problemen 
+    wende dich bitte an die Tutoren und Tutorinnen!'
+
+- Class: text
+  Output: 'Wenn du einen Kurs abbrechen möchtest, kannst du "bye()" eingeben oder die Escape-Taste drücken. Wenn eine dieser Funktionen nicht funktioniert, versuche die andere Variante. Auf diese Weise beendest du das Paket "swirl". Um "swirl" erneut zu starten, beginne erneut mit der Eingabe von swirl().'
+  
+- Class: cmd_question
+  Output: 'Beim Laden eines RStudio-Projekts wird das Projektverzeichnis automatisch als "Arbeitsverzeichnis" festgelegt.
+     Um zu sehen, welcher Dateipfad das ist und ob er korrekt ist, kannst du R die Funktion "getwd()" ausführen.
+     Probiere es gleich aus und tippe oder kopiere den Befehl „getwd()“ in die Konsole und drücke "Enter"'
+  CorrectAnswer: getwd()
+  AnswerTests: omnitest(correctExpr='getwd()')
+  Hint: 'Gebe oder kopiere den Befehl „getwd()“ in die Konsole und drücken die „Enter“-Taste.'
+  
+
+- Class: text
+  Output: 'Sehr schön. Mit dem Befehl setwd() kannst du dein Arbeitsverzeichnis (neu) definieren. Um absolute Pfadnamen zu vermeiden, verwenden wir nicht den setwd()-Befehl in jedem Skript, sondern verwenden stattdessen unseren RStudio-Projektordner. Dies ist der Ordner, den du gerade mit getwd() angezeigt hast. Du kannst es auch in RStudio oben im Konsolenfenster sehen. Jetzt können wir Daten in unseren Arbeitsbereich importieren. Leider kann man beim Laden von Daten leicht Fehler machen – deshalb kannst du es hier Schritt für Schritt üben!'
+  
+- Class: text
+  Output: 'R ist mit verschiedenen Dateiformaten kompatibel. Eingelesen werden können Textdateien (.txt), Excel-Tabellen (.xls, .xlsx) und CSV-Dateien (.csv). Der in dieser Lektion verwendete Agroforst-Datensatz (ein Beispieldatensatz aus einer Agroforst-Studie in Kaule, Nepal) wird in einem CSV-Format gespeichert. Für den Import in R ist das CSV-Format eine wirklich gute Wahl, da es sehr einfach und exakt funktioniert.'
+
+- Class: exact_question
+  Output: 'Betrachte zunächst den Agroforst-Datensatz als CSV-Datei. Du solltest die Datei agroforest_var.csv im Unterordner /data/raw Ihres Projektordners finden. Öffne die Datei mit Microsoft Excel/LibreOffice Calc. Wie viele Zeilen enthalten die Daten?'
+  CorrectAnswer: 96
+  AnswerTests: omnitest(correctVal = 96)
+  Hint: 'Blätter zur letzten Zeile in der Datei. Zeilen scrollen nach unten, Spalten scrollen nach rechts.'
+
+- Class: text_question
+  Output: 'Haben die Spalten Überschriften? Ja oder Nein?'
+  CorrectAnswer: 'Ja'
+  AnswerTests: val_matches('[J|j]a')
+  Hint: 'Sehen Sie sich den Anfang der Tabelle an. Geben Sie Ja oder Nein ein.'
+
+- Class: text
+  Output: 'Spaltenüberschriften werden in R als "Header" bezeichnet.' 
+  
+- Class: cmd_question
+  Output: 'Zum Laden von Tabellen in R wird die Funktion read.table verwendet. Natürlich gibt es noch andere Möglichkeiten, wie zB read.csv(). Die read.table()-Funktion ist jedoch am wenigsten anfällig für Fehler. Bitte rufe die Hilfeseite für "read.table" aus der Konsole auf. Erinnerst du dich an den Befehl?'
+  CorrectAnswer: ?read.table
+  AnswerTests: any_of_exprs('?read.table', 'help(read.table)')
+  Hint: 'Geb ?read.table ein und drücke die Eingabetaste.'
+  
+- Class: text
+  Output: 'Wenn du dir das Hilfefenster für read.table() ansiehst, erscheint unter "Verwendung" eine Liste mit Funktionsargumenten. Du must diese innerhalb der Funktion angeben, um eine Datei korrekt zu lesen. Alle sind nützlich, aber wir beschränken uns auf die wichtigsten. Die detaillierten Erklärungen der Argumente findest du weiter unten im Abschnitt "Argumente" der Hilfeseite.'
+
+- Class: text
+  Output: 'Fehler beim Einlesen können am einfachsten durch fehlende oder falsche Informationen über den Aufbau der Datei entstehen. Besonders wichtig ist die Angabe von Dezimal- und Spaltentrennzeichen, da diese oft unterschiedlich sind. Dies können Leerzeichen, Punkte oder Kommas sein.'
+
+- Class: text
+  Output: 'In Deutschland wird normalerweise das Komma als Dezimaltrennzeichen und die Leertaste als Spaltentrennzeichen verwendet.' 
+
+- Class: text_question
+  Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Du kannst das Zeichen einfach als Lösung eingeben. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor").'
+  CorrectAnswer: '.'
+  AnswerTests: omnitest(correctVal = '.')
+  Hint: 'Sie weist entweder ein "," oder ein "." auf. Gänsefüßchen sind nicht erforderlich.'
+
+- Class: text
+  Output: 'Großartig! Nun müssen wir noch herausfinden, welcher Spaltentrenner hier verwendet wird. In Excel/Calc geschieht dies über die Tabellenzeilen, aber wie passiert das eigentlich wirklich? Um die Spaltentrenner richtig definieren zu können, solltest du die Datei zunächst im Editor öffnen. Klicke dazu einfach mit der rechten Maustaste auf die Datei und wähle "Öffnen mit - Editor"'
+
+- Class: mult_question
+  Output: 'Durch welches Zeichen werden die einzelnen Werte getrennt?'
+  CorrectAnswer: 'Komma'
+  AnswerChoices: 'Semikolon; Komma; Punkt'
+  AnswerTests: omnitest(correctVal='Komma')
+  Hint: 'Schau nochmal in den Editor.'
+
+- Class: mult_question
+  Output: 'Jetzt weißt du, welche Dezimal- und Spaltentrennzeichen verwendet werden. Mit welchen Argumenten werden sie deiner Meinung nach definiert?'
+  CorrectAnswer: sep und dec
+  AnswerChoices: "sep und dec; header; quote"
+  AnswerTests: omnitest(correctVal='sep und dec')
+  Hint: 'Spaltentrennzeichen werden "separators" genannt.'
+
+- Class: text
+  Output: 'Fertig! Als Dezimaltrennzeichen für diese Datei geben wir also dec="." und als Spaltentrenner sep=";".'
+
+- Class: text_question
+  Output: 'Du hast vorhin herausgefunden, dass es Spaltenüberschriften in der zu lesenden Datei gibt. In der Hilfe siehst du, dass Informationen zum Header angegeben werden können. header= "TRUE" oder header= "FALSE" - Welches Argument musst du angeben? TRUE oder FALSE?'
+  CorrectAnswer: 'TRUE'
+  AnswerTests: omnitest(correctVal = 'TRUE')
+  Hint: 'geben Sie TRUE oder FALSE ein"'
+  
+- Class: text
+  Output: 'Zunächst muss der Speicherort angegeben werden, an dem sich die Datei befindet. Normalerweise tut man das mit dem Argument file= "Laufwerk/Ordner/Datei". Da wir unser Projektverzeichnis als Arbeitsverzeichnis definiert haben, müssen wir nur die relative Position der Datei zum Basisordner unseres Arbeitsverzeichnisses definieren. Wenn du also die CSV-Datei in den "data/raw"-Unterordner kopiert hast, ist das "data/raw/file". Das ist wirklich praktisch, da es auf allen Computern, auf denen dieses Projekt läuft, gleich ist - du kannst den Ordner einfach auf einen USB-Stick kopieren oder in der Cloud teilen, es wird immer funktionieren!'
+
+- Class: text
+  Output: 'Jetzt hast du alle Informationen, die du zum Einlesen benötigst.'
+  
+- Class: text
+  Output: 'Die Funktion zum Einlesen der Agroforstdatendatei könnte also so aussehen: read.table(file = "/data/raw/agroforest_var.csv", header = TRUE, sep = ",", dec = ".")'
+  
+
+- Class: cmd_question
+  Output: 'Im nächsten Schritt lade dir bitte die CSV-Datei in deine Konsole. Dazu verwendest du die Funktion read.table(). Damit dieser Kurs funktioniert, vermeiden wir es, hier das echte Verzeichnis einzugeben. Verwende stattdessen einfach "agroforest_path" (funktioniert nur hier in diesem Swirl-Kurs). Gib read.table(agroforest_path, header = TRUE, sep = "," ,dec = ".") ein oder kopiere es direkt. Drücke dann "Enter" und lade die Datei in die Konsole.'
+  CorrectAnswer: read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")
+  AnswerTests: omnitest(correctExpr = 'read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")')
+  Hint: 'Verwende die Funktion read.table(agroforest_path, header = TRUE, sep = "," ,dec = "."). Die Daten sollten in deiner Konsole erscheinen'
+
+- Class: text
+  Output: 'In der Konsole sollte über diesem Text die eingelesene Tabelle zu sehen sein, die wie ein Zahlenwirrwarr aussieht. Natürlich will man es nicht nur anschauen, man will es auch nutzen.' 
+
+- Class: text
+  Output: 'Mit einem Zuordnungspfeil „<-“ können Sie die Daten einem selbstgewählten Objektnamen zuweisen. Auf diese Weise wird die Datei zu einer nutzbaren Variable im Programm. Wie du dich vielleicht erinnerst, wird so etwas in R als "Objekt" bezeichnet.'
+
+- Class: cmd_question
+  Output: 'Du kannst jetzt af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".") in die Konsole eingeben oder die Funktion kopieren und "Enter" drücken. Damit weist du der Datei den Objektnamen "af" zu! Bitte ignoriere die Warnmeldung.'
+  CorrectAnswer: af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")
+  AnswerTests: omnitest(correctExpr = 'af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")')
+  Hint: 'Verwenden einen Zuordnungspfeil und die read.table-Funktion. af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".")'
+  
+- Class: mult_question
+  Output: 'Wo erscheinen jetzt die Daten aus der CSV-Datei?'
+  CorrectAnswer: Global Environment
+  AnswerChoices: Global Environment; R-Script; Console
+  AnswerTests: omnitest(correctVal='Global Environment')
+  Hint: 'Im RStudio-Fenster sollte oben rechts ein neues Objekt erschienen sein. Wie heißt dieser Bereich? "Global Enviroment" oder "History"?'
+
+- Class: cmd_question
+  Output: 'Super! Durch das Einlesen der Daten hast du eine große Hürde beim Arbeiten mit R gemeistert. Es gibt spezifische Varianten der read.table-Funktion, wie etwa read.csv/read.csv2. Ihre Spezifikationen findest du in der Hilfe von read.table. Schauen wir sie uns an. Rufe die Hilfe für read.table auf.'
+  CorrectAnswer: ?read.table
+  AnswerTests: any_of_exprs('?read.table', '?read.table()', 'help(read.table)')
+  Hint: 'Du kannst die Hilfe mit ? aufrufen. Wir suchen Hilfe zur Funktion "read.table". Die korrekte Eingabe lautet wie folgt: ?read.table. Tippe oder kopiere diesen in die Konsole und sende dann deine Eingabe mit der „Enter“-Taste an R.'
+  
+- Class: mult_question
+  Output: 'Scrolle im Abschnitt „Verwendung“ nach unten zur Funktion „read.csv2“. Für jede Funktion findest du eine Liste von Argumenten mit ihren Standardwerten. Standardwerte werden verwendet, wenn keine andere Vorgabe durch den Benutzer gemacht wird. Erläuterungen zu den Argumenten finden sich im Abschnitt Argumente weiter unten. Welches Feldtrennzeichen wird in "read.csv2" standardmäßig verwendet?'
+  CorrectAnswer: 'Semikolon'
+  AnswerChoices: "Semikolon; Komma; Punkt"
+  AnswerTests: omnitest(correctVal='Semikolon')
+  Hint: 'Schau nochmal auf die Hilfeseite. Das Feldtrennzeichen wird durch das Argument "sep" definiert.'
+  
+- Class: text
+  Output: 'Sehr schön. "read.csv2" kann für verschiedene europäische Ländereinstellungen verwendet werden, wobei das Komma als Dezimalpunkt dient. Manchmal können diese Funktionen den Code zum Laden eines Datensatzes etwas kürzen, wenn du die Spezifikationen deiner CSV-Datei kennst. Du solltest jedoch die grundlegende read.table-Funktion kennen und wissen, wie du die Trennzeichen und Dezimalstellen einer CSV-Datei überprüfst, da es keine allgemeingültigen Regeln gibt!' 
+  
+- Class: text
+  Output: 'Jetzt sollten wir überprüfen, ob alles korrekt geladen ist und einige Informationen über den Datensatz nachschauen.'
+  
+- Class: cmd_question
+  Output: 'In RStudio kannst du den Datensatz einfach anzeigen, indem du in der Umgebung auf ihn klickst (dies entspricht der Eingabe von View(af) in der Konsole). Probiere es einfach aus!'
+  CorrectAnswer: View(af)
+  AnswerTests: omnitest(correctVal = View(af))
+  Hint: 'Der erste Buchstabe muss groß geschrieben werden. Keine Leerzeichen verwenden.'
+
+- Class: text
+  Output: 'Ein neues Tab-Fenster sollte sich geöffnet haben. Du kannst dir Tabelle ansehen und sogar die Spalten sortieren.'
+  
+- Class: cmd_question
+  Output: 'Die Tabelle ist recht umfangreich und die Ansicht im "View-Tab" kann etwas verwirrend sein. Du kannst die ersten Zeilen der Daten auch in der Konsole überprüfen, indem du dir den Anfang der Tabelle mit head() anzeigen lässt. Versuche die Funktion auf den Datensatz anzuwenden.'
+  CorrectAnswer: head(af)
+  AnswerTests: omnitest('head(af)')
+  Hint: 'Gib einfach head(af) ein.' 
+  
+- Class: cmd_question
+  Output: 'Mit R kann man sich auch die Anzahl der Zeilen und Spalten anzeigen lassen. Mit dem Code nrow(af) liefert dir das Programm die Anzahl der Zeilen. Lass dir von R die Anzahl der Zeilen anzeigen.'
+  CorrectAnswer: nrow(af)
+  AnswerTests: omnitest('nrow(af)')
+  Hint: 'Benutze die Funktion now(af).'
+  
+- Class: exact_question
+  Output: 'Wie viele Linien gibt es?'
+  CorrectAnswer: 95
+  AnswerTests: omnitest(correctVal = 95)
+  Hint: 'Gebe den Befehl nrow(af) ein und drücke "Enter". Nun wird die Anzahl der Zeilen angegeben. Gebe die richtige Nummer in die Konsole ein.'
+
+- Class: mult_question
+  Output: 'Dasselbe ist mit der Spaltenanzahl möglich. Wie könnte der Befehl lauten?'
+  CorrectAnswer: ncol
+  AnswerChoices: ncol; columns; colno
+  AnswerTests: omnitest(correctVal='ncol')
+  Hint: 'Schau dir die Funktion zum Anzeigen der Zeilen an.'
+
+- Class: exact_question
+  Output: 'Lassen dir nun die Anzahl der Spalten im af-Datensatz anzeigen.'
+  CorrectAnswer: ncol(af)
+  AnswerTests: omnitest(correctVal = ncol(af))
+  Hint: 'Benutze die Funktion ncol(af).'
+
+- Class: cmd_question
+  Output: 'Es ist auch möglich, beide Werte gleichzeitig abzufragen. Dadurch erhältst du die "Dimensionen" der Tabelle. Gib dazu dim(af) ein.' 
+  CorrectAnswer: dim(af)
+  AnswerTests: omnitest('dim(af)')
+  Hint: 'Vergewissere dich, dass die Klammern geschlossen sind. Verwende keine Leerzeichen.'
+  
+- Class: text
+  Output: 'Du wirst sehen, dass nur zwei Werte angegeben sind und kein "Label". Überprüfe, was zuerst angezeigt wird - Zeilen oder Spalten? Du kannst auch sehen, dass beide Dimensionen auch im Umgebungsfenster von RStudio angegeben sind. Gemäß den Regeln für wissenschaftliche Tabellen sind die Zeilen „Beobachtungen“ und die Spalten „Variablen“. Trotzdem ist es hilfreich, die Funktionen zu kennen, da du sie möglicherweise für einige Berechnungen in R benötigst.'
+
+- Class: cmd_question
+  Output: 'Wenn du dir die Tabelle „af“ ansiehst, siehst du, dass die Spalten Überschriften haben. Mit names(af) kannst du dir alle Spaltenüberschriften anzeigen lassen, ohne von der Konsole in das andere Fenster wechseln zu müssen. Warum probierst du die Funktion nicht gleich aus?'
+  CorrectAnswer: names(af)
+  AnswerTests: omnitest('names(af)')
+  Hint: 'Gib names(af) ein. Die Überschriften der Spalten erscheinen nun in der Konsole.'
+
+
+- Class: text
+  Output: 'Gerade bei einer so umfangreichen Tabelle ist es sehr wichtig, einzelne Werte anzuzeigen und zu speichern, um damit in R zu arbeiten. Einzelne Werte aus einer Tabelle können durch Angabe der Nummern der entsprechenden Zeile und Spalte ausgewählt werden.'
+
+- Class: cmd_question
+  Output: 'Nun soll R einen Wert aus den af-Daten ausgeben. Du kannst einfach af[10, 5] in die Konsole eingeben oder kopieren.' 
+  CorrectAnswer: af[10, 5]
+  AnswerTests: omnitest(correctExpr = 'af[10, 5]')
+  Hint: 'Gib af[10, 5] ein.'
+  
+- Class: exact_question
+  Output: 'Welcher Wert erscheint in der Konsole?'
+  CorrectAnswer: 190
+  AnswerTests: omnitest(correctVal = 190)
+  Hint: 'Scrolle in der Konsole ein wenig nach oben, dort findest du das gerade ausgegebene Ergebnis.'
+ 
+- Class: mult_question 
+  Output: 'Was steht also zuerst in den eckigen Klammern?'
+  CorrectAnswer: 'Reihen'
+  AnswerChoices: 'Reihen; Spalten' 
+  AnswerTests: omnitest(correctVal='Reihen')
+  Hint: 'Scrolle in der Konsole ein wenig nach oben. Dort kannst du die Antwort in den vorherigen Abfragen sehen. Ansonsten schau dir die Tabelle nochmal an und lies die Zeilen/Spalten. In welcher Reihe findet sich die Zahl 190 und wo in den eckigen Klammern steht diese Reihennummer?'
+  
+- Class: exact_question
+  Output: 'Mit Hilfe der eckigen Klammern kannst du auch einzelne Werte in die globale Umgebung laden und einem Objekt zuweisen. Du wählst einen Namen für das neue Objekt und vergibst ihn wie gewohnt mit dem Pfeil. Lade beispielsweise den gerade aufgerufenen Wert als Objekt mit dem Namen x in die globale Umgebung. Du kannst x <- af[10, 5] in die Konsole eingeben oder kopieren. In der globalen Umgebung sollte nun der Wert 190 als Variable x erscheinen.'
+  CorrectAnswer: x <- af[10, 5]
+  AnswerTests: omnitest(correctVal = x <- af[10, 5])
+  Hint: 'Gib x <-af[10, 5] ein. Der Wert 190 sollte nun als Variable x in der globalen Umgebung erscheinen.'
+  
+- Class: mult_question 
+  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in die globale Umgebung laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 119 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
+  CorrectAnswer: "total_cov <- af[1:119, 10]"
+  AnswerChoices: "total_cov <- af[1:119, 10]; total_cov <- af[1, 10]" 
+  AnswerTests: omnitest(correctVal='total_cov <- af[1:119, 10]')
+  Hint: 'Der Doppelpunkt symbolisiert ein „bis zu“.'
+  
+- Class: cmd_question
+  Output: 'Vorher hast du mehrere Funktionen (dim(), nrow()...) verwendet, um dir einen Überblick über den Datensatz zu verschaffen. Eine Zusammenfassung all dessen bietet die Funktion str(), mit der man sich die „Struktur“ der Daten anzeigen lassen kann. Probier es gleich aus und gib die Funktion str(af) ein.'
+  CorrectAnswer: str(af)
+  AnswerTests: omnitest('str(af)')
+  Hint: 'Gib str(af) in die Konsole ein.'
+  
+- Class: mult_question 
+  Output: 'In der Konsole wird oberhalb dieses Textes eine Tabelle angezeigt. Ganz am Anfang der Tabelle wird angegeben, dass es sich um einen "dataframe" handelt, der 119 Zeilen (Beobachtungen) und 31 Spalten (Variablen) enthält. Aber was verbirgt sich in den Zeilen darunter, hinter den Dollarzeichen?'
+  CorrectAnswer: 'Spaltennamen'
+  AnswerChoices: 'Spaltennamen; Zeilennamen' 
+  AnswerTests: omnitest(correctVal='Spaltennamen')
+  Hint: 'Betrachte den Datensatz erneut. Spalten laufen von links nach rechts, Reihen von oben nach unten.'
+
+- Class: text
+  Output: 'R erkennt die Datentypen und listet sie in abgekürzter Form hinter den einzelnen Spaltenüberschriften auf. Zum Beispiel: „int“ (Ganzzahl), „num“ (numerisch), „chr“ (Zeichen). Erinnere dich an die letzte Lektion, als du Vektoren dieser verschiedenen Datentypen erstellt hast. Hier haben wir einen anderen Objekttyp, der als "dataframe" bezeichnet wird. Ein "dataframe" ist eine Kombination aus mehreren Vektoren, die alle genau die gleiche Länge haben - also das, was wir normalerweise eine Tabelle nennen. Fehlende Werte in einem "data frame" werden als "NA" bezeichnet.'
+
+- Class: mult_question 
+  Output: 'Welcher Objekttyp repräsentiert jede Spalte unseres dataframe?'
+  CorrectAnswer: 'Vektor'
+  AnswerChoices: 'Vektor; Linie; Liste'
+  AnswerTests: omnitest(correctVal='Vektor')
+  Hint: 'Stell dir jede Spalte als einen einzelnen Vektor des angezeigten Datentyps vor.'
+
+- Class: text
+  Output: 'Stimmt genau! Jede Spalte eines Dataframes ist ein einzelner Vektor (mit einem bestimmten Datentyp). Diese Dollarzeichen sind sehr hilfreich, um einzelne Variablen eines Dataframes auszuwählen. Du möchtest beispielsweise die Variable „altit“ (was für Höhe steht) aus dem Datensatz auswählen? Dazu musst du zunächst einen Verweis auf den Datensatz herstellen, was ganz einfach durch die Eingabe von "af" geschieht. Wenn du dahinter ein Dollarzeichen eingibst, werden bereits alle Spaltennamen angezeigt (wenn nicht, drücke die Tab-Taste). Durch eine derartige Auswahl der Variable werden einige Tippfehler vermieden.'
+
+- Class: mult_question
+  Output: 'Das waren viele Informationen auf einmal. Kannst du dir vorstellen, wie die Funktion aussehen muss?'
+  AnswerChoices: 'af$altit;$altit;altit$af'
+  CorrectAnswer: 'af$altit'
+  AnswerTests: omnitest(correctVal='af$altit')
+  Hint: 'Du kannst in der Konsole nach oben scrollen und die vorherigen Beschreibungen erneut lesen. Welche Funktion passt am besten?'
+
+- Class: cmd_question
+  Output: 'Probiere zuerst die Dollarzeichenfunktion einmal aus. Gib einfach af und das Dollarzeichen ein. Wähle dann die Variable altit und drücke "Enter".'
+  CorrectAnswer: af$altit
+  AnswerTests: omnitest(correctExpr='af$altit')
+  Hint: 'Du kannst $altit einfach kopieren oder eingeben.'
+  
+- Class: mult_question
+  Output: 'Was jetzt in der Konsole angezeigt wird, ist der Inhalt der Variable „altit“ als numerischer Vektor, der in Spalte 4 unseres dataframes steht. Wenn du darüber nachdenkst, was du zuvor über die Auswahl von Daten aus einem Dataframe gelernt hast, wie kannst du die gleiche Auswahl mit den eckigen Klammern [] durchführen?'
+  AnswerChoices: 'af[1:119, 4]; af[4, 1:119]; af[4]'
+  CorrectAnswer: 'af[1:119, 4]'
+  AnswerTests: omnitest(correctVal='af[1:119, 4]')
+  Hint: 'Du kannst in der Konsole nach oben scrollen und die vorherigen Beschreibungen erneut lesen. An welcher Position in den Klammern stehen Zeilen und Spalten?'
+  
+- Class: cmd_question
+  Output: 'Wenn du alle Zeilen einer Spalte auswählen möchtest, kannst du die passende Seite des Kommas innerhalb der eckigen Klammer auch einfach leer lassen. af[1:119, 4] macht genau dasselbe wie af[, 4] (umgekehrt ist dasselbe möglich, wenn alle Spalten einer Zeile ausgewählt werden sollen). Wir werden das oft brauchen, also um es noch einmal zu wiederholen: Versuche, alle Zeilen der Spalten 5 bis 7 auszuwählen und speicher das Ergebnis in einem neuen Objekt namens "aspect"'
+  CorrectAnswer: aspect <- af[, 5:7]
+  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:119, 5:7]', 'aspect <- af[, c(5,6,7)]')
+  Hint: 'Gib aspect <- af[, 5:7] in die Konsole ein, um alle Zeilen der Spalten 5 bis 7 (gekennzeichnet durch den Doppelpunkt) auszuwählen und in aspect zu speichern.'
+  
+- Class: cmd_question
+  Output: 'Nice. Schau dir jetzt deine gloable Umgebung an. Werfe dabei einen kurzen Blick in die Tabelle, indem du sie über die Globale Umgebung öffnest.'    
+  CorrectAnswer: View(af)
+  AnswerTests: omnitest(correctVal = View(af))
+  Hint: 'Klicke auf den dataframe in der Umgebung oder gebe View(af) ein. Der Anfangsbuchstabe muss groß geschrieben werden. Verwende keine Leerzeichen.'
+  
+- Class: text
+  Output: 'Du hast gerade einen neuen dataframe erstellt, der ausschließlich diese drei ausgewählten Variablen enthält. Auf diese Weise kannst du deine Daten bei Bedarf einfach unterteilen.'
+
+- Class: mult_question 
+  Output: 'Es gibt einen weiteren spezifischen Datentyp für nominale Variablen in R, der als "Faktor/factor" bezeichnet wird. Dies ist sehr praktisch für weitere Analysen, da man den Datensatz so gruppieren kann und Analysen die Variable richtig interpretieren. Welche der Variablen im Datensatz sollte als "factor" interpretiert werden?'
+  CorrectAnswer: 'fama'
+  AnswerChoices: 'fama; area_nr; total_cov; altit'
+  AnswerTests: omnitest(correctVal='fama')
+  Hint: 'Schaue dir die Variablen nochmals genau an. Welche davon ist eine nominale Variable, d. h. enthält Kategorien. Wenn du das anhand der Tabelle nicht erkennen kannst, schaue in das Metadatenblatt der Excel-Tabelle agroforest.xls in deinem Datenordner.'
+ 
+- Class: text
+  Output: 'Du hast Recht! Die "fama"-Variable scheint verschiedene Kategorien zu enthalten, die durch Buchstaben dargestellt werden. Wenn du die Excel-Tabelle agroforest.xls öffnest und in das Metadatenblatt schaust, siehst du, dass die Buchstaben verschiedene Arten der Betriebsführung darstellen. Die "area_nr" ist ebenfalls ein Zeichenvektor, enthält aber anstelle von Kategorien eine eindeutige Parzellen-ID. Allgemein kann ein Faktor (= nominale/kategoriale Variable) ein beliebiger Datentyp sein, solange er Kategorien repräsentiert. Zum Beispiel die drei Arten der landwirtschaftlichen Betriebsführung könnten genauso gut mit „1“, „2“ und „3“ nummeriert werden und immer noch ein Faktor sein. Aber woher weiß R, welche Variable ein Faktor ist? Wir müssen das dem Programm sagen!'
+  
+- Class: cmd_question
+  Output: 'Um einer Variablen den Datentyp "factor" zuzuweisen, können Sie die Funktion as.factor() verwenden. Gebe as.factor(af$fama) ein.'
+  CorrectAnswer: as.factor(af$fama)
+  AnswerTests: omnitest(correctExpr = 'as.factor(af$fama)')
+  Hint: 'Gebe as.factor(af$fama) in die Konsole ein.'
+  
+- Class: cmd_question
+  Output: 'Nun hast du die Variable "fama" als Faktor definiert. Aber wir sollten die Zuordnung im dataframe ändern, um ihn für weitere Analysen bereit zu haben. Du kannst das tun, indem du die Variable innerhalb des dataframes mit dem Zuweisungspfeil überschreibst. Gib af$fama <-as.factor(af$fama) ein.'
+  CorrectAnswer: af$fama <- as.factor(af$fama)
+  AnswerTests: omnitest(correctExpr = 'af$fama <- as.factor(af$fama)')
+  Hint: 'Gib af$fama <-as.factor(af$fama) ein.'
+  
+- Class: cmd_question
+  Output: 'Überprüfen wir nun noch einmal die Struktur des Dataframes. Verwende die zuvor erlernte Funktion.'
+  CorrectAnswer: str(af)
+  AnswerTests: omnitest('str(af)')
+  Hint: 'Gebe str(af) in die Konsole ein.'
+  
+- Class: mult_question 
+  Output: 'Die verschiedenen Kategorien eines Faktors werden Stufen genannt. In welche Faktorstufen wird $fama eingeteilt? Betrachte die Struktur.'
+  CorrectAnswer: 'ABC'
+  AnswerChoices: 'ABC; 123'
+  AnswerTests: omnitest(correctVal='ABC')
+  Hint: 'Betrachte die Struktur noch einmal genau. Die Zahlen sind nur repräsentativ für die Faktorstufen, die in Anführungszeichen angegeben sind.'
+
+- Class: cmd_question
+  Output: 'Eine weitere wirklich nützliche Funktion, um sich einen Überblick über deine Daten zu verschaffen, ist die summary()-Funktion. Dies ist bereits ein Schritt in die deskriptive Statistik, aber wir werden es gleich versuchen. Wende die Funktion mal auf den dataframe af an'
+  CorrectAnswer: summary(af)
+  AnswerTests: omnitest('summary(af)')
+  Hint: 'Gib einfach summary(af) in die Konsole ein.' 
+
+- Class: exact_question
+  Output: 'Du siehst, dass eine zusammenfassende Statistik für jede Variable ausgegeben wurde. Bei numerischen Variablen ist dies z.B. die Mittel-, Median-, Min- oder Max-Werte. Bei kategorialen Variablen (Faktoren) erhält man die Anzahl der Beobachtungen pro Faktorstufe. Wie viele Beobachtungen wurden in der Kategorie „C“ der Variablen „fama“ gemacht?'  
+  CorrectAnswer: 31
+  AnswerTests: omnitest(correctVal = 31)
+  Hint: 'Schau dir die Variable fama genauer an. Dort siehst du die Anzahl der Beobachtungen pro Faktorstufe.' 
+
+  
+- Class: text
+  Output: 'Wichtig ist immer, sich ein Bild von den Datenreihen zu machen, bevor man damit rechnet. Nachdem du eine Datei in R eingelesen hast, kannst du dir einige Informationen mit den Funktionen str(), head() und summary() anzeigen lassen. Du kannst es dir angewöhnen, diese Funktionen nach dem Einlesen von Daten immer zuerst auszuführen, um zu prüfen, ob das Einlesen korrekt funktioniert hat. Zusätzlich kannst du dir auch die gesamte Tabelle anzeigen lassen, indem du über die globale Umgebung den View()-Tab öffnest.'
+
+- Class: text
+  Output: 'Herzlichen Glückwunsch – du hast diese Lektion erfolgreich abgeschlossen! Im letzten Abschnitt bist du bereits ein wenig in die ersten Statistikinhalte eingetaucht. Zum Unterteilen von Datenselektionen sind logische Bedingungen sehr nützlich. Das kannst du in der nächsten Lektion weiter üben.'

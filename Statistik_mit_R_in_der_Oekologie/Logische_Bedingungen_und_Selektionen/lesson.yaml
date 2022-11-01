@@ -1,0 +1,131 @@
+- Class: meta
+  Course: Vegetation Ecology and Multivariate Analysis
+  Lesson: Logical Conditions and Selections
+  Author: Friedemann von Lampe, inspired by courses from Nick Carchedi, dataset from RLab
+  Type: Standard
+  Organization: Georg-August-University GÃ¶ttingen
+  Version: 2.4.5
+  
+  
+- Class: text
+  Output: 'Willkommen zur dritten Lektion. In dieser Lektion erfahren Sie, wie Sie Teilmengen 
+    Ihres Datensatzes auswählen. Der Schwerpunkt liegt auf der Verwendung logischer Bedingungen zur 
+    Auswahl von Beobachtungen aus dem Datenrahmen. Wir fahren mit unserem Agroforstdatensatz aus der 
+    letzten Lektion fort.'
+  
+- Class: text
+  Output: 'Wenn Du Fragen oder Probleme hast, stelle die Frage jederzeit den Tutoren und Tutorinnen. Um mit der Lesson fortzufahren, drücke "Enter".'
+  
+- Class: text
+  Output: 'Zunächst noch ein paar kurze Anmerkungen zur Funktionsweise dieses Kurses. Nachfolgend werden Dir verschiedene Fragen gestellt und Informationen angezeigt werden. Je nachdem, was Dir angezeigt wird, kannst Du unterschiedlich fortfahren. Mal kannst du mit "Enter" fortfahren. Mal ist es erforderlich, eine Funktion oder Buchstaben einzugeben,  der eine Multiple-Choice-Frage beantwortet. Um fortzufahren, drücke die Taste "Enter".'
+
+- Class: text
+  Output: 'Wenn du eine Lesson beenden möchtest, kannst Du dies jederzeit tun. Dazu kannst Du bye() in die Console tippen und mit Enter bestätigen oder die Esc-Taste (in der oberen linken Ecke Deiner Tastatur drücken). Je nachdem welche Frage Dir angezeigt wird, kannst Du die Lesson mit der einen oder anderen Variante abbrechen bzw. beenden. Als grobe Regel kannst Du Dir merken, dass wenn Du zur Eingabe von Funktion oder Ähnlichem aufgefordert wirst, Du die Lesson mit der Eingabe von bye() beendest. Funktioniert eine dieser Funktionen nicht, versuche es mit der anderen Variante. Auf diesem Wege beendest  Du das Package "swirl". Um "swirl" erneut zu starten, beginne wieder mit der Eingabe von swirl(). Wenn lediglich Text erscheint, kannst Du durch Drücken der Esc-Taste beenden. Dein Fortschritt wird gespeichert, so dass  Du die letzte Lesson immer an der gleichen Stelle fortsetzen kannst. Drücke "Enter" um mit dem Kurs zu beginnen.'
+  
+- Class: cmd_question
+  Output: 'In der letzten Lektion haben wir gelernt, dass jede Spalte eines Datenrahmens einen Vektor darstellt. Wir wollen wieder mit einem Vektor beginnen. Der "af"-Datenrahmen ist bereits im Workspace geladen. Bitte weise die Variable "north" aus dem dataframe einem neuen Vektor namens "north" zu.'
+  CorrectAnswer: north <- af$north
+  AnswerTests: omnitest(correctExpr = 'north <- af$north')
+  Hint: 'Erinner dich, wie du eine Variable aus einem dataframe auswählst. Gebe dafür north <- af$north ein.'
+
+- Class: mult_question
+  Output: 'Erinnere dich, dass der Ausdruck north > 0 uns einen Vektor von logischen Werten der gleichen Länge wie north liefert, wobei TRUE Werten von north entsprechen, die größer als Null sind, und FALSE Werten von north entsprechen, die kleiner oder gleich Null sind. Was denkst du, wird dir north[north > 0] geben?'
+  AnswerChoices: 'Ein Vektor aus allen positiven Elementen von north; Ein Vektor aus allen negativen Elementen von north; Ein Vektor bestehend aus NAs; Ein Vektor der Länge 0; Ein Vektor bestehend aus TRUEs und FALSes'
+  CorrectAnswer: 'Ein Vektor aus allen positiven Elementen von north'
+  AnswerTests: omnitest(correctVal='Ein Vektor aus allen positiven Elementen von north')
+  Hint: 'Der logische Ausdruck north > 0 gibt uns TRUE für jedes positive Element von north. Was denkst du, basierend darauf, wird north[north > 0] zurückgeben?'
+
+- Class: cmd_question
+  Output: 'Gib north[north > 0] ein, um zu sehen, dass wir alle positiven Elemente von north erhalten.'
+  CorrectAnswer: north[north > 0]
+  AnswerTests: omnitest(correctExpr='north[north > 0]')
+  Hint: 'Gib north[north > 0] ein, um nur die positiven Elemente von north anzuzeigen.'
+  
+- Class: text
+  Output: 'Anscheinend waren die meisten Plots nach Süden ausgerichtet und wir haben nur 4 Plots, die leicht nach Norden ausgerichtet sind.' 
+
+- Class: text
+  Output: 'Wir haben bereits gesehen, wie man mit north[1:10] nur die ersten zehn Werte von x "subsetted". In diesem Fall geben wir einen Vektor positiver Ganzzahlen innerhalb der eckigen Klammern an, wodurch R angewiesen wird, nur die Elemente von x mit den Nummern 1 bis 10 zurückzugeben.'
+
+- Class: text
+  Output: 'Viele Programmiersprachen verwenden eine sogenannte „nullbasierte Indizierung“, was bedeutet, dass das erste Element eines Vektors als Element 0 betrachtet wird. R verwendet eine „einsbasierte Indizierung“, was (Du hast es erraten!) das erste Element eines Vektors bedeutet gilt als Element 1.'
+
+- Class: cmd_question
+  Output: 'Kannst du herausfinden, wie wir das 3., 5. und 7. Element von "north" subsetten würden? Hinweis -- Verwende die Funktion c(), um mit Hilfe der Elementnummern einen numerischen Indexvektor zu definieren.'
+  CorrectAnswer: north[c(3, 5, 7)]
+  AnswerTests: omnitest(correctExpr='north[c(3, 5, 7)]')
+  Hint: 'Erstelle einen Indexvektor mit c(3, 5, 7) und setzen Sie diesen dann in die eckigen Klammern.'
+
+- Class: text
+  Output: 'Was ist, wenn wir an allen Elementen von "north" interessiert sind, AUSSER dem 2. und 10.? Es wäre ziemlich mühsam, einen Vektor zu konstruieren, der alle Nummern von 1 bis 96 enthält, AUSSER 2 und 10.'
+
+- Class: cmd_question
+  Output: 'Glücklicherweise akzeptiert R negative ganzzahlige Indizes. Während north[c(2, 10)] uns NUR das 2. und 10. Element von north liefert, gibt uns north[c(-2, -10)] alle Elemente von north AUSSER dem 2. und 10. Element. Versuche north[c(-2, -10)], um das zu überprüfen.'
+  CorrectAnswer: north[c(-2, -10)]
+  AnswerTests: omnitest(correctExpr='north[c(-2, -10)]')
+  Hint: 'Versuchen es mal mit north[c(-2, -10)].'
+
+- Class: cmd_question
+  Output: 'Eine Kurzform zur Angabe mehrerer negativer Zahlen besteht darin, das negative Vorzeichen vor den Vektor der positiven Zahlen zu setzen. Gebe north[-c(2, 10)] ein, um genau dasselbe Ergebnis wie vorher zu erhalten.'
+  CorrectAnswer: north[-c(2, 10)]
+  AnswerTests: omnitest(correctExpr='north[-c(2, 10)]')
+  Hint: 'Verwende north[-c(2, 10)], um die negative Indizierung ein wenig zu vereinfachen. Das kann eine Zeitersparnis sein, wenn sehr viele negative Indizes angegeben werden sollen.'
+
+- Class: text
+  Output: 'Bis jetzt haben wir behandelt, wie man Elemente aus Vektoren auswählt. Alle diese Funktionen funktionieren auch für einen gesamten Dataframe. Der einzige Unterschied ist, dass ein Dataframe 2 Dimensionen hat (Zeilen und Spalten). Daher müssen wir Werte für beide in den eckigen Klammern wie folgt definieren: df[Zeilen, Spalten]'
+
+- Class: cmd_question
+  Output: 'Erinnere dich, wie du einen einzelnen Wert aus dem af-Dataframe ausgewählt hast. Versuche, die zweite Zeile der Spalte area_nr auszuwählen.'  
+  CorrectAnswer: af[2, 1]
+  AnswerTests: any_of_exprs('af$area_nr', 'af[2, 1]')
+  Hint: 'In welcher Spalte steht die Variable area_nr? Du möchtest die zweite Zeile dieser Spalte auswählen.'
+  
+- Class: mult_question
+  Output: 'Bleiben wir beim Vektor "north". Wenn wir alle Beobachtungen von "af" auswählen wollen, die eine Südexposition haben (d.h. Nordwert größer als Null) - was wäre deiner Meinung nach der richtige Ausdruck?'
+  AnswerChoices: 'af[af$north > 0, ]; af[ ,af$north > 0]; af$north > 0'
+  CorrectAnswer: 'af[af$north > 0, ]'
+  AnswerTests: omnitest(correctVal='af[af$north > 0, ]')
+  Hint: 'Der logische Ausdruck af$north > 0 gibt uns TRUE für jedes positive Element von af$north. Wie könnte deiner Meinung nach eine Auswahl im Dataframe aussehen? Denke dabei an die Dimensionen und wo Sie Zeilen und Spalten platzieren müssen.'
+
+- Class: text
+  Output: 'Sehr gut. Da wir alle nach logischen Kriterien ausgewählten Spalten unserer Beobachtungen anzeigen möchten, müssen wir das zweite Element in den eckigen Klammern (Spalten die anzuzeigen sind) leer lassen. Das bedeutet, dass alle Spalten für die ausgewählten Beobachtungen eingeschlossen werden sollten.'
+  
+- Class: cmd_question
+  Output: 'Jetzt wollen wir den Operator „==“ verwenden, was GLEICH bedeutet. Versuche basierend auf dem, was du gerade gelernt hast, es anzuwenden, um alle Beobachtungen mit einem Nordwert von genau -1 (d. h. Südausrichtung) auszuwählen.' 
+  CorrectAnswer:  af[af$north == -1, ]
+  AnswerTests: omnitest(correctExpr= 'af[af$north == -1, ]') 
+  Hint: 'Gebe in der Konsole af[af$north == -1, ] ein.'
+  
+
+- Class: cmd_question
+  Output: 'Manchmal willst du wissen, welche Zeilen des Dataframes deiner Auswahl entsprechen. Dafür kannst du die Funktion which() verwenden. Probiere which(af_s$north == -1) aus, um herauszufinden, welche Zeilen einen Nordwert von -1 haben.'
+  CorrectAnswer:  which(af$north == -1)
+  AnswerTests: omnitest(correctExpr = 'which(af$north == -1)') 
+  Hint: 'Gib einfach which(af$north == -1) in die Konsole ein.'
+
+- Class: cmd_question
+  Output: 'Wie viele Beobachtungen haben einen Nordwert von -1? Gib die Anzahl in die Konsole ein. Tipp: Du kannst manuell zählen oder die Funktion length() verwenden, um die Länge eines Vektors zu berechnen.'
+  CorrectAnswer: 8
+  AnswerTests: omnitest(correctVal = 8)
+  Hint: 'Verwende length(which(af$north == -1)), um die Anzahl der Beobachtungen zu berechnen.' 
+
+- Class: mult_question
+  Output: 'Stelle dir vor, du möchtest alle Beobachtungen mit einem pH-Wert >6 und <5 auswählen. Wie könntest du das tun?'
+  AnswerChoices: 'af[af$pH_H2O > 6 | af$pH_H2O < 5), ]; af_s[af$pH_H2O > 6 & af$pH_H2O < 5), ]'
+  CorrectAnswer: 'af[af$pH_H2O > 6 | af$pH_H2O < 5), ]'
+  AnswerTests: omnitest(correctVal='af[af$pH_H2O > 6 | af$pH_H2O < 5), ]')
+  Hint: 'Überlege dir - können beide Bedingungen für die pH-Werte gleichzeitig WAHR sein?'
+  
+- Class: text
+  Output: 'Überlege immer, welche Bedingungen gleichzeitig wirklich WAHR sein können. Ein pH-Wert kann nicht gleichzeitig kleiner als 5 UND größer als 6 sein - für diese Auswahl kann (und muss) nur eine Bedingung WAHR sein.'
+
+- Class: text
+  Output: 'Jetzt kennst du einige Methoden zum Unterteilen von Daten aus Vektoren und Dataframes. Unterschiedliche Ansätze sind in verschiedenen Szenarien am besten geeignet und im Zweifelsfall heißt es ausprobieren!'
+  
+- Class: text
+  Output: 'Herzliche Glückwünsche! Du hast nun die dritte Lektion „Logische Bedingungen und Selektionen“ erfolgreich abgeschlossen. Bei Fragen oder Problemen: Bitte fragen Sie ihre Dozierenden oder Tutoren und Tutorinnen!'
+    
+    
+    
+    
+

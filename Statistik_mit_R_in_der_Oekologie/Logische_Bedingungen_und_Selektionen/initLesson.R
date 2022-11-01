@@ -14,3 +14,5 @@ rm(list=ls())
 af <- read.csv(file.path(.get_course_path(), "Statistik_mit_R_in_der_Oekologie", "Logische_Bedingungen_und_Selektionen", "agroforest_var.csv"))
 
 swirl_options(swirl_is_fun = F)
+
+select_language(language = "german")

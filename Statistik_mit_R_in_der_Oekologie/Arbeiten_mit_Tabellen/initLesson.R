@@ -15,3 +15,5 @@ lesson_dir <- file.path(.get_course_path(), "Statistik_mit_R_in_der_Oekologie", 
 agroforest_path <- file.path(lesson_dir, "agroforest_var.csv")
 
 swirl_options(swirl_is_fun = F)
+
+select_language(language = "german")

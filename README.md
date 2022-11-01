@@ -1,6 +1,4 @@
-# Swirl courses
+# Swirl Courses
 
-Introductory swirl courses for
-M.Biodiv. 431 (English)
-B.Biodiv. 365 (German)
+Introductory swirl course for B.Biodiv. 365 (German)
  

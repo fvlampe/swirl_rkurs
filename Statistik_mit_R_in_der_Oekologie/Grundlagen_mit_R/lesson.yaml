@@ -1,9 +1,8 @@
 - Class: meta
-  Course: Vegetation Ecology and Multivariate Analysis
+  Course: Statistik mit R in der Oekologie
   Lesson: Grundlagen mit R
-  Author: Friedemann von Lampe, based on lessons by Nick Carchedi and RLab Team
+  Author: Friedemann von Lampe, based on lessons by RLab Team (Ronja Gottschalk, Melanie Werner, Niels Schwab) and Nick Carchedi
   Type: Standard
-  Organization: University Göttingen
   Version: 2.4.5
 
 - Class: text
@@ -13,31 +12,30 @@
   Output: 'Wenn Du Fragen oder Probleme hast, stelle sie jederzeit den Tutoren und Tutorinnen. Um mit der Lesson fortzufahren, drücke "Enter".'
   
 - Class: text
-  Output: 'Zunächst noch ein paar kurze Anmerkungen zur Funktionsweise dieses Kurses. Nachfolgend werden Dir verschiedene Fragen gestellt und Informationen angezeigt werden. Je nachdem, was Dir angezeigt wird, kannst Du unterschiedlich fortfahren. Mal kannst Du mit "Enter" fortfahren. Mal ist es erforderlich, eine Funktion oder Buchstaben einzugeben, der eine Multiple-Choice-Frage beantwortet. Um fortzufahren, drücke die Taste "Enter".'
+  Output: 'Zunächst noch ein paar kurze Anmerkungen zur Funktionsweise dieses Kurses. Nachfolgend werden Dir verschiedene Fragen gestellt und Informationen angezeigt werden. Je nachdem was Dir angezeigt wird, kannst Du unterschiedlich fortfahren. Mal kannst Du mit "Enter" fortfahren. Mal ist es erforderlich, eine Funktion oder Buchstaben einzugeben, der eine Multiple-Choice-Frage beantwortet. Um fortzufahren, drücke die Taste "Enter".'
 
 - Class: text
   Output: 'Wenn Du eine Lesson beenden möchtest, kannst Du dies jederzeit tun. Dazu kannst Du bye() in die Console tippen und mit Enter bestätigen oder die Esc-Taste (in der oberen linken Ecke Deiner Tastatur drücken). Je nachdem welche Frage Dir angezeigt wird, kannst Du die Lesson mit der einen oder anderen Variante abbrechen bzw. beenden. Als grobe Regel kannst Du Dir merken, dass wenn Du zur Eingabe von Funktion oder Ähnlichem aufgefordert wirst, Du die Lesson mit der Eingabe von bye() beendest. Funktioniert eine dieser Funktionen nicht, versuche es mit der anderen Variante. Auf diesem Wege beendest Du das Package "swirl". Um "swirl" erneut zu starten, beginne wieder mit der Eingabe von swirl(). Wenn lediglich Text erscheint, kannst Du durch Drücken der Esc-Taste beenden. Dein Fortschritt wird gespeichert, so dass Du die letzte Lesson immer an der gleichen Stelle fortsetzen kannst. Drücke "Enter" um mit dem Kurs zu beginnen.'
 
 
 - Class: cmd_question
-  Output: 'In seiner einfachsten Form kann R als interaktiver Taschenrechner verwendet werden. Du kannst hierfür unter anderem den Plus (+), Minus (-), Mal (*) und Teil (/) Operatoren verwenden. Versuche es mal aus indem du in die Konsole 1+2 eingibst und mit "Enter" bestätigst'
+  Output: 'In seiner einfachsten Form kann R als interaktiver Taschenrechner verwendet werden. Du kannst hierfür unter anderem den Plus (+), Minus (-), Mal (*) und Teil (/) Operatoren verwenden. Probiere es mal aus, indem du in die Konsole 1+2 eingibst und mit "Enter" bestätigst'
   CorrectAnswer: 1+2
   AnswerTests: omnitest(correctExpr='1+2', correctVal= '3')
-  Hint: 'Um R als Taschenrechner zu verwenden kannst du die oben erwähnten Operatoren verwenden. Du kannst Beispielsweise die einfache Addition 1+2 in R berechnen. Dafür gibst du 1+2 in die Konsolte ein und bestätigst es mit "Enter".'
+  Hint: 'Um R als Taschenrechner zu verwenden kannst du die oben erwähnten Operatoren verwenden. Du kannst beispielsweise die einfache Addition 1+2 in R berechnen. Dafür gibst du 1+2 in die Konsole ein und bestätigst es mit "Enter".'
 
 - Class: text
-  Output: 'Wie du siehst, gibt R das Ergebnis ebenfalls in der Konsole aus. Die Rechnung die du an R übergeben hast
-    steht in blau über dem in schwarz ausgegebenem Ergebnis.
+  Output: 'Wie du siehst, gibt R das Ergebnis ebenfalls in der Konsole aus. Die Rechnung die du an R übergeben hast, steht in blau über dem in schwarz ausgegebenen Ergebnis.
     Drücke "Enter" um fortzufahren'
 
 - Class: text
-  Output: 'Wenn du bestimmte Ergebnise mehr als einmal verwenden möchtest, kann es hilfreich sein diese in
-    sogenannten "Objekten" zu speichern. Ein Objekt, ähnlich wie eine Datei auf einem PC, hat einen Namen und wird genutzt
-    um leicht auf zum Beispiel Ergebnisse einer Rechnung, Zahlenreihen oder Tabellen zuzugreifen.
-    Objekte können beliebig benannt werden, beispielhaft "x" oder "my_object" oder ...'
+  Output: 'Wenn du bestimmte Ergebnise mehr als einmal verwenden möchtest, kann es hilfreich sein, diese in
+    sogenannten "Objekten" zu speichern. Ein Objekt, ähnlich wie eine Datei auf einem PC, hat einen Namen und wird genutzt,
+    um leicht auf Ergebnisse einer Rechnung, Zahlenreihen oder Tabellen zuzugreifen.
+    Objekte können beliebig benannt werden, zum Beispiel "x" oder "my_object" oder ...'
 
 - Class: cmd_question
-  Output: 'Wenn du selber ein Objekt erstellen möchtest kannst du das mit dem Zuweisungspfeil (<-) tun.
+  Output: 'Wenn du selber ein Objekt erstellen möchtest, kannst du das mit dem Zuweisungspfeil (<-) tun.
     Das sieht zum Beispiel wie folgt aus: x <- 1+2. Hierbei weißt man das Ergebnis auf der rechten Seite des Pfeiles
     dem Variablennamen / Objekt aud der linken Seite des Pfeiles zu. Das Ergebnis "3" wird somit als "x" gespeichert.
     Du kannst das nun ausprobieren indem du ein Objekt x erstellst. Weise diesem, wie oben beschrieben, die Rechnung 1+2 zu.
@@ -46,15 +44,15 @@
   AnswerTests: omnitest(correctExpr= 'x <- 1+2'); expr_creates_var('x')
   Hint: 'Wie beschrieben, kannst du Objekten Namen zuweisen mithilfe von <-. In diesem Fall
     soll das Objekt x heißen und die Rechnung die gespeichert werden soll ist 1+2.
-    Die Definition des Objekts sieht dann wie folgt aus: x <- 1+2. Es ist wichtig dass ein Leerzeichen links und rechts
-    des Zuweisungsoperators ist aber nicht zwischen dem "<" und "-" welche den Operator bilden.'
+    Die Definition des Objekts sieht dann wie folgt aus: x <- 1+2. Es ist wichtig, dass ein Leerzeichen links und rechts
+    des Zuweisungsoperators ist aber nicht zwischen dem "<" und "-", welche den Operator bilden.'
 
 - Class: text
   Output: 'Du wirst bemerkt haben, dass R das Ergebnis 3 nun nicht mehr in der Konsole ausgegeben hat.
     Wenn du den Zuweisungsoperator verwendest, geht R davon aus, dass du die Ergebnisse nicht sofort sehen musst,
     sondern sie stattdessen zu einem späteren Zeitpunkt verwenden möchtest. Das Objekt x wurde erstellt und das kannst
-    du oben rechts im Fenster "(Global)" Environment" erkennen. Es ist gespeichert im sogennanten "Workspace".
-    Alle Objekte die du definiertst im Rahmen einer Session werden dort gespeicert.'
+    du oben rechts im Fenster "(Global) Environment" erkennen. Es ist im sogennanten "Workspace" gespeichert.
+    Alle Objekte, die du im Rahmen einer Session definiertst, werden dort gespeichert.'
     
 - Class: cmd_question
   Output: 'Um den Inhalt eines Objekts anzuzeigen, gib einfach x in die Konsole und bestätige mit "Enter".
@@ -64,14 +62,14 @@
   Hint: 'Gib x in die Konsole ein und bestätige mit "Enter". Dieser Befehl führt dazu das der Wert von x ausgegeben wird.'
 
 - Class: text
-  Output: 'Es ist wichtig zu wissen, dass jedes Objekt überschrieben werden kann indem ihm ein neuer Wert zugewiesen wird.
+  Output: 'Es ist wichtig zu wissen, dass jedes Objekt überschrieben werden kann, indem ihm ein neuer Wert zugewiesen wird.
     Zum Beispiel mit dem Befehl x <- 6 kannst du den vorher gespeicherten Wert in x überschreiben.
     Aber das solltest du jetzt nicht tun, da wir für die folgenden Rechnungen das Objekt x <- 1+2 noch brauchen.
     Drücke einfach "Enter" um fortzufahren.'
 
 - Class: cmd_question
-  Output: 'Es ist möglich direkt mit Objekten Rechnungen durchzuführen. Am besten versuchst du das jetzt mal selber.
-    Dafür erstelle ein neues Objekt das "y" heißen soll und die Rechnung x*300 + 100.
+  Output: 'Es ist möglich, direkt mit Objekten Rechnungen durchzuführen. Am besten versuchst du das jetzt mal selber.
+    Dafür erstelle ein neues Objekt, das "y" heißen soll und die Rechnung x*300 + 100.
     Du kannst es entweder selber in die Konsole eintippen oder y <- x*300 + 100 kopieren und dann mit "Enter" bestätigen.'
   CorrectAnswer: y <- x*300 + 100
   AnswerTests: omnitest(correctExpr='y <- x*300 + 100')
@@ -93,17 +91,17 @@
   Hint: 'Bitte tippe oder kopiere x*y in die Konsole und bestätige die Eingabe mit "Enter".'
 
 - Class: text
-  Output: 'Wie du jetzt siehsts, wurde der Wert des Objekts x mit dem Wert des Objekts y multipliziert. Jetzt erstellen wir
+  Output: 'Wie du jetzt siehst, wurde der Wert des Objekts x mit dem Wert des Objekts y multipliziert. Jetzt erstellen wir
     eine kleine Sammlung aus Zahlen und speichern diese als Vektor. Jedes Objekt das eine Ansammlung an Daten enthält wird als
-    Datenstruktur bezeichnet und numerischer Vektor sind die simpelste Form dieser Datenstrukturen in R. Genau genommen sind sogar
+    Datenstruktur bezeichnet und numerischere Vektoren sind die simpelste Form dieser Datenstrukturen in R. Genau genommen sind sogar
     Objekte mit nur einer einzigen Zahl Vektoren mit der Länge von eins.'
 
 - Class: cmd_question
-  Output: 'Der einfachste Weg um einen Vektor zu erstellen ist die c() function, wobei das c für 
-    "concatenate" oder "combine" steht. Wir wollen einen Vektor erstellen der die Zahlen 
+  Output: 'Der einfachste Weg um einen Vektor zu erstellen, ist die c() function, wobei das c für 
+    "concatenate" oder "combine" steht. Wir wollen einen Vektor erstellen, der die Zahlen 
     1.1, 9, 4, 5 und 6 enthält. Im Falle einer Zahlenfolge muss nicht immer jede Zahl individuell an R übergeben werden.
     Im Fall der letzten 3 Zahlen ist nur die niedrigste und höchste ausreichend. So ist
-    4:6 gleichzusetzten mit 4, 5 und 6. Also können wir den Vector definieren indem wir c(1.1, 9, 4:6) in die Konsole eingeben.
+    4:6 gleichzusetzten mit 4, 5 und 6. Also können wir den Vektor definieren, indem wir c(1.1, 9, 4:6) in die Konsole eingeben.
     Versuche es mal und speichere das Ergebnis in der Variable z.'
   CorrectAnswer: z <- c(1.1, 9, 4:6)
   AnswerTests: omnitest(correctExpr='z <- c(1.1, 9, 4:6)')
@@ -115,30 +113,30 @@
   Output: 'Immer wenn Fragen zu bestimmten Funktionen auftreten, kannst du diese in R mithilfe
     der eingebauten Hilfeseite, erreichbar über den "?" Befehl, versuchen zu lösen. Zum Beispiel, wenn du
     mehr Informationen zu der c() Funktion erhalten möchtest, gebe ?c in die Konsole (ohne Klammern die normalerweise
-    auf einen Funktionnamen folgen). Versuche es am besten mal selber aus.'
+    auf einen Funktionnamen folgen). Probiere es am besten mal selber aus.'
   CorrectAnswer: ?c
   AnswerTests: any_of_exprs('?c', 'help(c)')
   Hint: 'Tippe ?c in die Konsolte und bestätige es mit "Enter". Dieser Befehl ruft die Hilfeseite für die c() Funktion auf.'
 
 - Class: text
   Output: 'Die Hilfe wird, wie du nun siehst, im unteren rechten Bereich im RStudio Fenster angezeigt.
-    Es zeigt dir zum einen den Befehl der Funktion selber, die Optionen die du verwenden kannst (diese Parameter nennt man Argumente)
-    und weitere Sachen auf die du bei dieser Funktion achten solltest. Besonders hilfreich sind die angeführten Beispiele,
+    Es zeigt dir den Befehl der Funktion selber, die Optionen die du verwenden kannst (diese Parameter nennt man Argumente)
+    und weitere Dinge, auf die du bei dieser Funktion achten solltest. Besonders hilfreich sind die angeführten Beispiele,
     da diese immer funktionieren und ein guter Startpunkt für eigene Anpassungen und Modifikationen sind. Dementsprechend kannst du den 
     Code der Beispiele in dein RSkript kopieren und es selber versuchen. Im RStudio kannst du außerdem mit der Suchfunktion im Help-Tab
     im unteren rechten Panel gezielt nach Funktionen suchen.'
 
 - Class: cmd_question
-  Output: 'Schau jetzt mal auf das "Environmet" Fenster. Hier ist ein neues Objekt zu sehen mit dem Datentyp (numerisch),
-    der Länge (5) sowie einer Vorschau des Inhalts. Gib z in die Konsole ein um dir den Inhalt anzeigen zu lassen.
+  Output: 'Schau jetzt mal auf das "Environment" Fenster. Hier ist ein neues Objekt zu sehen mit dem Datentyp (numerisch),
+    der Länge (5) sowie einer Vorschau des Inhalts. Gib z in die Konsole ein, um dir den Inhalt anzeigen zu lassen.
     Beachte, dass die Werte des Outputs nicht durch Kommas getrennt werden.'
   CorrectAnswer: z
   AnswerTests: omnitest(correctExpr='z')
-  Hint: 'Tippe z in die Konsole und bestätige den Befehl mit "Enter" um den Inhalt anzeigen zu lassen.'
+  Hint: 'Tippe z in die Konsole und bestätige den Befehl mit "Enter", um den Inhalt anzeigen zu lassen.'
 
 - Class: cmd_question
   Output: 'Du kannst Vektoren auch zu einem neuen Vektor kombinieren. Erstelle nun einen neuen Vektor bestehend aus 
-    z, 555 und dann erneut z in genau dieser Reihenfolge. Weise diesen neuen Vektor erstmal keiner Variable zu
+    z, 555 und dann erneut z in genau dieser Reihenfolge. Weise diesen neuen Vektor erstmal keiner Variable zu,
     damit wir die Ergebnisse sofort sehen können.'
   CorrectAnswer: c(z, 555, z)
   AnswerTests: omnitest(correctExpr='c(z, 555, z)')
@@ -174,17 +172,17 @@
   AnswerChoices: 'ein Vektor der Länge 5; eine einzelne Zahl (i.e Ein Vektor der Länge 1);
     ein Vektor der Länge 0 (i.e. ein leerer Vektor)'
   AnswerTests: omnitest(correctVal='ein Vektor der Länge 5')
-  Hint: 'Denke darüber nach wie R die andere "vektorisierte" operation gehandhabt hat: Element für Element.'
+  Hint: 'Denke darüber nach, wie R die andere "vektorisierte" operation gehandhabt hat: Element für Element.'
 
 - Class: cmd_question
-  Output: 'Lass dir jetzt einfach mal den Inhalt von my_sqrt ausgeben.'
+  Output: 'Lass dir jetzt den Inhalt von my_sqrt ausgeben.'
   CorrectAnswer: my_sqrt
   AnswerTests: omnitest(correctExpr='my_sqrt')
-  Hint: 'Gib dafür my_sqrt in die Konsole ein und bestätige es mit "Enter" um deren Wert anzeigen zu lassen.'
+  Hint: 'Gib dafür my_sqrt in die Konsole ein und bestätige es mit "Enter", um deren Wert anzeigen zu lassen.'
   
 - Class: text
   Output: 'Wie du wahrscheinlich bereits vermutet hast, hat R zuerst 1 von jedem Element aus z substrahiert,
-    danach die zweite Wurzel von jedem Element gezogen. Am Ende erhätst du also ein Vektor mit der gleichen Länge
+    danach die zweite Wurzel von jedem Element gezogen. Am Ende erhätst du also einen Vektor mit der gleichen Länge
     wie der ursprüngliche Vektor z.'
 
 - Class: cmd_question
@@ -192,25 +190,25 @@
   CorrectAnswer: my_div <- z / my_sqrt
   AnswerTests: omnitest(correctExpr='my_div <- z / my_sqrt')
   Hint: 'Der nötige Befehl lautet my_div <- z / my_sqrt. Die Leerzeichen links und rechts des "/" Operators sind nicht 
-    notwendig, aber erhöhen oft die Lesbarkeit des Codes. Am Ende ist es aber persönliche Präferenz.'
+    notwendig, aber erhöhen oft die Lesbarkeit des Codes. Am Ende ist es persönliche Präferenz.'
 
 - Class: mult_question
   Output: 'Welches der folgenden Statetments ist wahr?'
   CorrectAnswer: 'Das erste Element in my_div ist das gleiche wie das erste Element in z geteilt durch das erste Element in my_sqrt, und so weiter ...'
   AnswerChoices: 'Das erste Element in my_div ist das gleiche wie das erste Element in z geteilt durch das erste Element in my_sqrt, und so weiter ...; my_div ist eine einzelne Zahl (i.e ein Vektor mit Länge 0);  my_div ist undefiniert'
   AnswerTests: omnitest(correctVal='Das erste Element in my_div ist das gleiche wie das erste Element in z geteilt durch das erste Element in my_sqrt, und so weiter ...')
-  Hint: 'Ruf dir nochmal ins Gedächtnis wie R andere "vektorizierte" Operationen mit "+" oder "*".'
+  Hint: 'Ruf dir nochmal ins Gedächtnis, wie R andere "vektorizierte" Operationen mit "+" oder "*" handhabt.'
 
 - Class: cmd_question
   Output: 'Lass dir jetzt mal den Inhalt von my_div ausgeben.'
   CorrectAnswer: my_div
   AnswerTests: omnitest(correctExpr='my_div')
-  Hint: 'Tippe my_div in die Konsole und bestätige es mit "Enter" um den Inhalt zu sehen.'
+  Hint: 'Tippe my_div in die Konsole und bestätige es mit "Enter", um den Inhalt zu sehen.'
 
 - Class: text
   Output: 'Wenn R zwei Vektoren von gleicher Länge gegeben werden, wendet R einfach die gewollte arithmetrische Operation 
     ("+", "-", "*", etc.) Element für Element an. Wenn zwei Vektoren unterschiedliche Länge haben, "recycelt" R den 
-    kürzeren Vektor einfach so lange bis er die selbe Länge wie der längere Vector hat.'
+    kürzeren Vektor einfach so lange, bis er die selbe Länge wie der längere Vektor hat.'
 
 - Class: text
   Output: 'Als Beispiel, als du vorher z * 2 + 100 berechnet hast, hatte der Vektor z eine Länge von 5 
@@ -223,19 +221,19 @@
 
 - Class: cmd_question
   Output: 'Für ein weiteres Beispiel für dieses "Recycling", versuch einmal selber c(1, 2, 3, 4) mit c(0, 10) zu addieren.
-    Mach dir keine Gedanken darüber das Ergebnis in einer neuen Variabel zu speichern.'
+    Speicher das Ergebnis nicht in einer neuen Variabel.'
   CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
   AnswerTests: any_of_exprs('c(1, 2, 3, 4) + c(0, 10)', 'c(1:4) + c(0, 10)')
-  Hint: 'Gib c(1, 2, 3, 4) + c(0, 10) in die Konsolte ein und schau dir selber an wie R die beiden Vektoren
+  Hint: 'Gib c(1, 2, 3, 4) + c(0, 10) in die Konsole ein und schau dir selber an, wie R die beiden Vektoren
     mit unterschiedlichen Länge addiert. Weise das Ergebnis keiner Variabel zu.'
 
 - Class: text
   Output: 'Wenn die Länge des längeren Vektors nicht gleichmäßig durch die Länge des kürzeren Vektors geteilt werden kann,
-    wendet R trotzdem die "Recycling"-Methode an aber wird dir eine Warnung ausgeben um dich wissen zu lassen
+    wendet R trotzdem die "Recycling"-Methode an, wird dir aber eine Warnung ausgeben, um dich wissen zu lassen,
     dass eventuell etwas nicht stimmt.'
 
 - Class: cmd_question
-  Output: 'R kann ebenfalls logarithmisieren mit Hilfe der Funktion "log()". Du hast ja schon die Möglichkeit gelernt wie du
+  Output: 'R kann ebenfalls logarithmisieren mit Hilfe der Funktion "log()". Du hast ja schon die Möglichkeit gelernt, wie du
     die eingebaute Hilfe in R nutzen kannst (über den ? Befehl gefolgt von dem Funktion Namen). Damit kannst du dir auch die 
     Hilfe Seite der "log" Funktion anzeigen lassen.'
   CorrectAnswer: ?log
@@ -245,7 +243,7 @@
     per "Enter" an R.'
 
 - Class: cmd_question
-  Output: 'Mit Nutzung der Hilfe-Seite versuche herauszufinden wie du den dekadischen Logarithmus berechnen kannst.
+  Output: 'Versuche mit der Hilfe-Seite herauszufinden, wie du den dekadischen Logarithmus (Zehnerlogarithmus) berechnen kannst.
     Berechne damit dann den dekadischen Logarithmus von unserem Vektor y.'
   CorrectAnswer:  log10(y)
   AnswerTests: omnitest(correctExpr='log10(y)')
@@ -259,7 +257,7 @@
 - Class: cmd_question
   Output: 'Nicht definierte Rechnungen führen zur Ausgabe von "NaN" pder "Inf", welche in R als Abkürzung stehen 
     für "Not a Number" oder "Infinity". Eine "nicht definierte" Berechnung ist zum Beispiel ein Teilen durch 0.
-    Der Geteilt-Operator ist in R "/". Versuche jetzt mal selber eine Ausgabe von NaN zu erzeugen indem du 0 durch 0 teilst.'
+    Der Geteilt-Operator ist in R "/". Versuche jetzt mal selber, eine Ausgabe von NaN zu erzeugen indem du 0 durch 0 teilst.'
   CorrectAnswer: 0/0
   AnswerTests: omnitest(correctExpr='0/0')
   Hint: 'Gib dafür einfach 0/0 in die Konsole ein und bestätige das mit "Enter".'
@@ -274,7 +272,7 @@
   Output: 'Wie du sehen kannst, erzeugt diese Berechnung die Ausgabe "NA". "NA" steht für "Not Available" und zeigt fehlende Werte an.
      Der Grund ist das Objekt "z". Zuvor hast du dem Objekt z einen Vektor zugewiesen, der fünf Werte enthält.
      Eckige Klammern, wie in der obrigen Funktion, werden verwendet, um einzelne Elemente eines Vektors aufzurufen/auszugeben.
-     In diesem Fall hast du R gebeten den 6ten Wert des Vektors auszugeben. Da der Vektor aber nur 5 Werte enthält
+     In diesem Fall hast du R gebeten den 6ten Wert des Vektors auszugeben. Da der Vektor aber nur 5 Werte enthält,
      gibt in diesem Fall R mit "NA" die Information aus, dass es dafür keinen Zahlenwert gibt.' 
 
 - Class: cmd_question
@@ -298,7 +296,7 @@
 
 - Class: text
   Output: 'Ein Hinweis zur Syntax von R-Code: Wie bereits erwähnt, ist R "case sensitive". Das heißt, 
-    es wird zwischen Groß- und Kleinschreibung unterschieden, z. X ist nicht x.
+    es wird zwischen Groß- und Kleinschreibung unterschieden und X ist nicht x.
     Der Umgang mit Leerzeichen erfordert dagegen weniger Aufmerksamkeit; Sie können fast überall 
     eingefügt werden, ohne dass es zu Fehlermeldungen kommt. In der Regel ist Code mit mehr 
     Leerzeichen klarer und einfacher zu lesen.'
@@ -306,7 +304,7 @@
 - Class: mult_question
   Output: 'Bisher haben wir uns nur mit numerischen Vektoren beschäftigt. Andere Arten von 
   Vektoren umfassen logische Vektoren, Zeichen oder ganze Zahlen. Was ist deiner Meinung nach ein
-  ganzzahliger Vektor? (Verwende Google, wenn du keine Ahnung hast)'
+  ganzzahliger Vektor? (Verwende Google, wenn du die Antwort nicht weißt)'
   AnswerChoices: 'ein Vektor, der nur ganze Zahlen enthält;
      ein Vektor, der nur reelle Zahlen enthält;
      ein Vektor der Länge 1;
@@ -333,7 +331,7 @@
     einer Variablen namens tf zuzuweisen.'
     
 - Class: mult_question
-  Output: 'Wie denkst du wird tf aussehen?'
+  Output: 'Wie denkst du, wird tf aussehen?'
   CorrectAnswer: 'ein Vektor mit 5 logischen Werten'
   AnswerChoices: 'ein Vektor mit 5 logischen Werten; ein Vektor mit 1nem logischen Wert'
   AnswerTests: omnitest(correctVal='ein Vektor mit 5 logischen Werten')
@@ -366,7 +364,7 @@
 - Class: text
   Output: 'Diesmal fragen wir, ob jedes einzelne Element von z größer oder gleich 6 ist. 
     Da nur 9 und 6 größer oder gleich 6 sind, sind nur diese Elemente TRUE 
-    (vergleiche es mit der Vorschau in der RStudio-Umgebung).'
+    (vergleiche es mit der Vorschau im "Global Environment").'
     
 - Class: text
   Output: 'Die Symbole "<" und ">=" in diesen Beispielen werden als "logische Operatoren" bezeichnet.
@@ -411,15 +409,14 @@
     Workspace ist ein anderes Wort für Vektor.'
   CorrectAnswer: 'Der Workspace ist der Arbeitsspeicher und umfasst die Gesammtheit Deiner in R aktiven Daten, Tabellen, Vektoren etc.'
   AnswerTests: omnitest(correctVal='Der Workspace ist der Arbeitsspeicher und umfasst die Gesammtheit Deiner in R aktiven Daten, Tabellen, Vektoren etc.')
-  Hint: 'Workspace lässt sich als "Arbeitsraum" übersetzen. Was könnte der enthalten oder was 
+  Hint: 'Workspace lässt sich als "Arbeitsbereich" übersetzen. Was könnte der enthalten oder was 
     könnte seine Funktion sein?'
     
 - Class: text
-  Output: 'Der Workspace, zu deutsch Arbeitsspeicher, umfasst die Gesammtheit 
+  Output: 'Der Workspace, zu deutsch Arbeitsbereich, umfasst die Gesammtheit 
     Deiner in R aktiven Daten, Tabellen, Vektoren etc. Dieser wird in der "Global Environment" im oberen
-    rechten Fenster in RStudio angezeigt. Die "Global Environment" ist die zum Workspace zugehörige Umgebung.
-    Wenn Du dazu aufgefordet wirst, Daten in Dein Global Enviroment zu laden, sollst 
-    Du Daten in den Workspace laden. Diese Begriffe kannst Du der Einfachheit halber, als synonym ansehen.
+    rechten Fenster in RStudio angezeigt. Wenn Du dazu aufgefordet wirst, Daten in Dein "Global Enviroment" zu laden, sollst 
+    Du Daten in den Workspace laden. Diese Begriffe kannst Du der Einfachheit halber als synonym ansehen.
     Drücke "Enter", um fortzufahren.'
     
 - Class: mult_question
@@ -435,12 +432,12 @@
 - Class: text
   Output: 'Genau. Wenn Dein Workspace bestehen bleibt, kann das dazu führen, 
     dass Du z.B. fälschlicherweise Daten aus einer vorherigen Sitzung für Deine Berechnungen verwendest.  
-    Deshalb ist es immer gut, sozusagen mit einem unbeschriebenen Blatt zu beginnen, 
+    Deshalb ist es immer gut, mit einem unbeschriebenen Blatt zu beginnen, 
     also den Workspace aufzuräumen, bzw. zu bereinigen.
     Drücke "Enter" um fortzufahren.'
     
 - Class: cmd_question
-  Output:  'Denke also immer daran, zuerst den Arbeitsbereich aufzuräumen.
+  Output:  'Denke also immer daran, zuerst den "Workspace" aufzuräumen.
     Wie das geht, kannst Du jetzt lernen. Tippe oder kopiere dazu den Befehl rm(list = ls()) in die Konsole, 
     und schicke diesen dann mit der Taste "Enter" ab.'
   CorrectAnswer: rm(list = ls())
@@ -452,19 +449,19 @@
     
     
 - Class: mult_question
-  Output: 'Lassen Sie uns überprüfen, ob das Leeren des Arbeitsbereichs erfolgreich war.
-     Seh dir das Umgebungsfenster in RStudio an – ist es leer?'
+  Output: 'Überprüfe, ob das Leeren des "Workspaces" erfolgreich war.
+     Seh dir das "Environment"-Fenster in RStudio an – ist es leer?'
   AnswerChoices: 'Ja; Nein'
   CorrectAnswer: 'Ja'
   AnswerTests: omnitest(correctVal='Ja')
   Hint: 'Wirklich?'
     
 - Class: text
-  Output: 'Danke für die Reinigung! Wenn du keinen Code zum Bereinigen des Arbeitsbereichs 
-    verwenden möchten, kannst du auch auf das Besensymbol im RStudio-Umgebungsfenster klicken. 
-    Dadurch werden alle Objekte aus dem Arbeitsbereich gelöscht.'
+  Output: 'Danke für die Reinigung! Wenn du keinen Code zum Bereinigen des "Workspace" 
+    verwenden möchten, kannst du auch auf das Besensymbol im "RStudio-Environment" klicken. 
+    Dadurch werden alle Objekte aus dem "Workspace" gelöscht.'
 
 
 - Class: text
-  Output: 'Herzliche Glückwünsche! Du hast nun die erste Lektion „Grundlagen mit R“ erfolgreich abgeschlossen.
-     Bei Fragen oder Problemen: Bitte fragen Sie ihre Dozierenden oder Tutoren und Tutorinnen!'
+  Output: 'Herzlichen Glückwünsch! Du hast nun die erste Lektion „Grundlagen mit R“ erfolgreich abgeschlossen.
+     Bei Fragen oder Problemen: Wende Dich an die Dozierenden oder Tutoren und Tutorinnen!'

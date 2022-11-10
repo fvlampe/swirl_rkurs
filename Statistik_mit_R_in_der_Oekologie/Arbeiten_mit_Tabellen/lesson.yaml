@@ -1,19 +1,18 @@
 - Class: meta
   Course: Statistik mit R in der Oekologie
   Lesson: Arbeiten mit Tabellen
-  Author: Friedemann von Lampe, based on courses by RLab Team 
+  Author: Friedemann von Lampe, based on lessons by RLab Team (Ronja Gottschalk, Melanie Werner, Niels Schwab)
   Type: Standard
-  Organization: Georg-August-University Göttingen
   Version: 2.4.5
   
   
 - Class: text
   Output: 'Willkommen zur zweiten Lektion, in der du lernst, wie du Datentabellen in R laden kannst. 
-    An dieser Stelle empfehlen wir natürlich, dass du dein eigenes RStudio-Projekt für 
-    unseren Kurs erstellst sowie alle Daten heruntergeladst und extrahierst in einen Unterordner "data"  
-    in deinem Projektordner. Wenn du das noch nicht getan hast, kannst du diese Lektion trotzdem 
-    durchführen, solange du Zugriff auf den Agroforstdatensatz hast. Bei Fragen oder Problemen 
-    wende dich bitte an die Tutoren und Tutorinnen!'
+    An dieser Stelle empfehlen wir, dass du dein eigenes RStudio-Projekt für 
+    unseren Kurs erstellst. Außerdem solltest du alle Daten herunterladen, aus dem ZIP-Ordner extrahieren und in einen eigenen Unterordner "data"  
+    in deinem Projektordner speichern. Wenn du das noch nicht getan hast, kannst du diese Lektion trotzdem 
+    durchführen, solange du Zugriff auf den Agroforstdatensatz hast. Wende dich bei Fragen oder Problemen 
+    bitte an die Tutoren und Tutorinnen!'
 
 - Class: text
   Output: 'Wenn du einen Kurs abbrechen möchtest, kannst du "bye()" eingeben oder die Escape-Taste drücken. Wenn eine dieser Funktionen nicht funktioniert, versuche die andere Variante. Auf diese Weise beendest du das Paket "swirl". Um "swirl" erneut zu starten, beginne erneut mit der Eingabe von swirl().'
@@ -24,11 +23,11 @@
      Probiere es gleich aus und tippe oder kopiere den Befehl „getwd()“ in die Konsole und drücke "Enter"'
   CorrectAnswer: getwd()
   AnswerTests: omnitest(correctExpr='getwd()')
-  Hint: 'Gebe oder kopiere den Befehl „getwd()“ in die Konsole und drücken die „Enter“-Taste.'
+  Hint: 'Schreibe oder kopiere den Befehl „getwd()“ in die Konsole und drücken die „Enter“-Taste.'
   
 
 - Class: text
-  Output: 'Sehr schön. Mit dem Befehl setwd() kannst du dein Arbeitsverzeichnis (neu) definieren. Um absolute Pfadnamen zu vermeiden, verwenden wir nicht den setwd()-Befehl in jedem Skript, sondern verwenden stattdessen unseren RStudio-Projektordner. Dies ist der Ordner, den du gerade mit getwd() angezeigt hast. Du kannst es auch in RStudio oben im Konsolenfenster sehen. Jetzt können wir Daten in unseren Arbeitsbereich importieren. Leider kann man beim Laden von Daten leicht Fehler machen – deshalb kannst du es hier Schritt für Schritt üben!'
+  Output: 'Sehr schön. Mit dem Befehl setwd() kannst du dein Arbeitsverzeichnis (neu) definieren. Um absolute Pfadnamen zu vermeiden, verwenden wir nicht den setwd()-Befehl in jedem Skript, sondern verwenden stattdessen unseren RStudio-Projektordner. Dies ist der Ordner, den du gerade mit getwd() angezeigt hast. Du kannst es auch in RStudio oben im Konsolenfenster sehen. Jetzt können wir Daten in unseren Workspace (Arbeitsbereich) importieren. Leider kann man beim Laden von Daten leicht Fehler machen – deshalb kannst du es hier Schritt für Schritt üben!'
   
 - Class: text
   Output: 'R ist mit verschiedenen Dateiformaten kompatibel. Eingelesen werden können Textdateien (.txt), Excel-Tabellen (.xls, .xlsx) und CSV-Dateien (.csv). Der in dieser Lektion verwendete Agroforst-Datensatz (ein Beispieldatensatz aus einer Agroforst-Studie in Kaule, Nepal) wird in einem CSV-Format gespeichert. Für den Import in R ist das CSV-Format eine wirklich gute Wahl, da es sehr einfach und exakt funktioniert.'
@@ -43,19 +42,19 @@
   Output: 'Haben die Spalten Überschriften? Ja oder Nein?'
   CorrectAnswer: 'Ja'
   AnswerTests: val_matches('[J|j]a')
-  Hint: 'Sehen Sie sich den Anfang der Tabelle an. Geben Sie Ja oder Nein ein.'
+  Hint: 'Sieh den Anfang der Tabelle an. Gib Ja oder Nein ein.'
 
 - Class: text
   Output: 'Spaltenüberschriften werden in R als "Header" bezeichnet.' 
   
 - Class: cmd_question
-  Output: 'Zum Laden von Tabellen in R wird die Funktion read.table verwendet. Natürlich gibt es noch andere Möglichkeiten, wie zB read.csv(). Die read.table()-Funktion ist jedoch am wenigsten anfällig für Fehler. Bitte rufe die Hilfeseite für "read.table" aus der Konsole auf. Erinnerst du dich an den Befehl?'
+  Output: 'Zum Einladen von Tabellen in R wird die Funktion read.table verwendet. Natürlich gibt es noch andere Möglichkeiten, wie zB read.csv(). Die read.table()-Funktion ist jedoch am wenigsten anfällig für Fehler. Bitte rufe die Hilfeseite für "read.table" aus der Konsole auf. Erinnerst du dich an den Befehl?'
   CorrectAnswer: ?read.table
   AnswerTests: any_of_exprs('?read.table', 'help(read.table)')
   Hint: 'Geb ?read.table ein und drücke die Eingabetaste.'
   
 - Class: text
-  Output: 'Wenn du dir das Hilfefenster für read.table() ansiehst, erscheint unter "Verwendung" eine Liste mit Funktionsargumenten. Du must diese innerhalb der Funktion angeben, um eine Datei korrekt zu lesen. Alle sind nützlich, aber wir beschränken uns auf die wichtigsten. Die detaillierten Erklärungen der Argumente findest du weiter unten im Abschnitt "Argumente" der Hilfeseite.'
+  Output: 'Wenn du dir das Hilfefenster für read.table() ansiehst, erscheint unter "Usage" eine Liste mit Funktionsargumenten. Du must diese innerhalb der Funktion angeben, um eine Datei korrekt zu lesen. Alle sind nützlich, aber wir beschränken uns auf die wichtigsten. Die detaillierten Erklärungen der Argumente findest du weiter unten im Abschnitt "Arguments" der Hilfeseite.'
 
 - Class: text
   Output: 'Fehler beim Einlesen können am einfachsten durch fehlende oder falsche Informationen über den Aufbau der Datei entstehen. Besonders wichtig ist die Angabe von Dezimal- und Spaltentrennzeichen, da diese oft unterschiedlich sind. Dies können Leerzeichen, Punkte oder Kommas sein.'
@@ -93,7 +92,7 @@
   Output: 'Du hast vorhin herausgefunden, dass es Spaltenüberschriften in der zu lesenden Datei gibt. In der Hilfe siehst du, dass Informationen zum Header angegeben werden können. header= "TRUE" oder header= "FALSE" - Welches Argument musst du angeben? TRUE oder FALSE?'
   CorrectAnswer: 'TRUE'
   AnswerTests: omnitest(correctVal = 'TRUE')
-  Hint: 'geben Sie TRUE oder FALSE ein"'
+  Hint: 'Gib TRUE oder FALSE ein"'
   
 - Class: text
   Output: 'Zunächst muss der Speicherort angegeben werden, an dem sich die Datei befindet. Normalerweise tut man das mit dem Argument file= "Laufwerk/Ordner/Datei". Da wir unser Projektverzeichnis als Arbeitsverzeichnis definiert haben, müssen wir nur die relative Position der Datei zum Basisordner unseres Arbeitsverzeichnisses definieren. Wenn du also die CSV-Datei in den "data/raw"-Unterordner kopiert hast, ist das "data/raw/file". Das ist wirklich praktisch, da es auf allen Computern, auf denen dieses Projekt läuft, gleich ist - du kannst den Ordner einfach auf einen USB-Stick kopieren oder in der Cloud teilen, es wird immer funktionieren!'
@@ -115,7 +114,7 @@
   Output: 'In der Konsole sollte über diesem Text die eingelesene Tabelle zu sehen sein, die wie ein Zahlenwirrwarr aussieht. Natürlich will man es nicht nur anschauen, man will es auch nutzen.' 
 
 - Class: text
-  Output: 'Mit einem Zuordnungspfeil „<-“ können Sie die Daten einem selbstgewählten Objektnamen zuweisen. Auf diese Weise wird die Datei zu einer nutzbaren Variable im Programm. Wie du dich vielleicht erinnerst, wird so etwas in R als "Objekt" bezeichnet.'
+  Output: 'Mit einem Zuordnungspfeil „<-“ kannst du die Daten einem selbstgewählten Objektnamen zuweisen. Auf diese Weise wird die Datei zu einer nutzbaren Variable im Programm. Wie du dich vielleicht erinnerst, wird so etwas in R als "Objekt" bezeichnet.'
 
 - Class: cmd_question
   Output: 'Du kannst jetzt af <- read.table(agroforest_path, header = TRUE, sep = ",", dec = ".") in die Konsole eingeben oder die Funktion kopieren und "Enter" drücken. Damit weist du der Datei den Objektnamen "af" zu! Bitte ignoriere die Warnmeldung.'
@@ -128,7 +127,7 @@
   CorrectAnswer: Global Environment
   AnswerChoices: Global Environment; R-Script; Console
   AnswerTests: omnitest(correctVal='Global Environment')
-  Hint: 'Im RStudio-Fenster sollte oben rechts ein neues Objekt erschienen sein. Wie heißt dieser Bereich? "Global Enviroment" oder "History"?'
+  Hint: 'Im RStudio-Fenster sollte oben rechts ein neues Objekt erschienen sein. Wie heißt dieser Bereich? "Global Environment" oder "History"?'
 
 - Class: cmd_question
   Output: 'Super! Durch das Einlesen der Daten hast du eine große Hürde beim Arbeiten mit R gemeistert. Es gibt spezifische Varianten der read.table-Funktion, wie etwa read.csv/read.csv2. Ihre Spezifikationen findest du in der Hilfe von read.table. Schauen wir sie uns an. Rufe die Hilfe für read.table auf.'
@@ -137,7 +136,7 @@
   Hint: 'Du kannst die Hilfe mit ? aufrufen. Wir suchen Hilfe zur Funktion "read.table". Die korrekte Eingabe lautet wie folgt: ?read.table. Tippe oder kopiere diesen in die Konsole und sende dann deine Eingabe mit der „Enter“-Taste an R.'
   
 - Class: mult_question
-  Output: 'Scrolle im Abschnitt „Verwendung“ nach unten zur Funktion „read.csv2“. Für jede Funktion findest du eine Liste von Argumenten mit ihren Standardwerten. Standardwerte werden verwendet, wenn keine andere Vorgabe durch den Benutzer gemacht wird. Erläuterungen zu den Argumenten finden sich im Abschnitt Argumente weiter unten. Welches Feldtrennzeichen wird in "read.csv2" standardmäßig verwendet?'
+  Output: 'Scrolle im Abschnitt „Usage“ nach unten zur Funktion „read.csv2“. Für jede Funktion findest du eine Liste von Argumenten mit ihren Standardwerten. Standardwerte werden verwendet, wenn keine andere Vorgabe durch den Benutzer gemacht wird. Erläuterungen zu den Argumenten finden sich im Abschnitt Argumente weiter unten. Welches Feldtrennzeichen wird in "read.csv2" standardmäßig verwendet?'
   CorrectAnswer: 'Semikolon'
   AnswerChoices: "Semikolon; Komma; Punkt"
   AnswerTests: omnitest(correctVal='Semikolon')
@@ -150,7 +149,7 @@
   Output: 'Jetzt sollten wir überprüfen, ob alles korrekt geladen ist und einige Informationen über den Datensatz nachschauen.'
   
 - Class: cmd_question
-  Output: 'In RStudio kannst du den Datensatz einfach anzeigen, indem du in der Umgebung auf ihn klickst (dies entspricht der Eingabe von View(af) in der Konsole). Probiere es einfach aus!'
+  Output: 'In RStudio kannst du den Datensatz einfach anzeigen, indem du im "Environment" auf ihn klickst (dies entspricht der Eingabe von View(af) in der Konsole). Probiere es einfach aus!'
   CorrectAnswer: View(af)
   AnswerTests: omnitest(correctVal = View(af))
   Hint: 'Der erste Buchstabe muss groß geschrieben werden. Keine Leerzeichen verwenden.'
@@ -196,7 +195,7 @@
   Hint: 'Vergewissere dich, dass die Klammern geschlossen sind. Verwende keine Leerzeichen.'
   
 - Class: text
-  Output: 'Du wirst sehen, dass nur zwei Werte angegeben sind und kein "Label". Überprüfe, was zuerst angezeigt wird - Zeilen oder Spalten? Du kannst auch sehen, dass beide Dimensionen auch im Umgebungsfenster von RStudio angegeben sind. Gemäß den Regeln für wissenschaftliche Tabellen sind die Zeilen „Beobachtungen“ und die Spalten „Variablen“. Trotzdem ist es hilfreich, die Funktionen zu kennen, da du sie möglicherweise für einige Berechnungen in R benötigst.'
+  Output: 'Du wirst sehen, dass nur zwei Werte angegeben sind und kein "Label". Überprüfe, was zuerst angezeigt wird - Zeilen oder Spalten? Du kannst auch sehen, dass beide Dimensionen auch im "Environment" von RStudio angegeben sind. Gemäß den Regeln für wissenschaftliche Tabellen sind die Zeilen „Beobachtungen“ und die Spalten „Variablen“. Trotzdem ist es hilfreich, die Funktionen zu kennen, da du sie möglicherweise für einige Berechnungen in R benötigst.'
 
 - Class: cmd_question
   Output: 'Wenn du dir die Tabelle „af“ ansiehst, siehst du, dass die Spalten Überschriften haben. Mit names(af) kannst du dir alle Spaltenüberschriften anzeigen lassen, ohne von der Konsole in das andere Fenster wechseln zu müssen. Warum probierst du die Funktion nicht gleich aus?'
@@ -228,13 +227,13 @@
   Hint: 'Scrolle in der Konsole ein wenig nach oben. Dort kannst du die Antwort in den vorherigen Abfragen sehen. Ansonsten schau dir die Tabelle nochmal an und lies die Zeilen/Spalten. In welcher Reihe findet sich die Zahl 190 und wo in den eckigen Klammern steht diese Reihennummer?'
   
 - Class: exact_question
-  Output: 'Mit Hilfe der eckigen Klammern kannst du auch einzelne Werte in die globale Umgebung laden und einem Objekt zuweisen. Du wählst einen Namen für das neue Objekt und vergibst ihn wie gewohnt mit dem Pfeil. Lade beispielsweise den gerade aufgerufenen Wert als Objekt mit dem Namen x in die globale Umgebung. Du kannst x <- af[10, 5] in die Konsole eingeben oder kopieren. In der globalen Umgebung sollte nun der Wert 190 als Variable x erscheinen.'
+  Output: 'Mit Hilfe der eckigen Klammern kannst du auch einzelne Werte in das "Global Environment" laden und einem Objekt zuweisen. Du wählst einen Namen für das neue Objekt und vergibst ihn wie gewohnt mit dem Pfeil. Lade beispielsweise den gerade aufgerufenen Wert als Objekt mit dem Namen x in das "Global Environment". Du kannst x <- af[10, 5] in die Konsole eingeben oder kopieren. Im "Global Environment" sollte nun der Wert 190 als Variable x erscheinen.'
   CorrectAnswer: x <- af[10, 5]
   AnswerTests: omnitest(correctVal = x <- af[10, 5])
-  Hint: 'Gib x <-af[10, 5] ein. Der Wert 190 sollte nun als Variable x in der globalen Umgebung erscheinen.'
+  Hint: 'Gib x <-af[10, 5] ein. Der Wert 190 sollte nun als Variable x im "Global Environment" erscheinen.'
   
 - Class: mult_question 
-  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in die globale Umgebung laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 119 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
+  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in das "Global Environment" laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 119 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
   CorrectAnswer: "total_cov <- af[1:119, 10]"
   AnswerChoices: "total_cov <- af[1:119, 10]; total_cov <- af[1, 10]" 
   AnswerTests: omnitest(correctVal='total_cov <- af[1:119, 10]')
@@ -264,7 +263,7 @@
   Hint: 'Stell dir jede Spalte als einen einzelnen Vektor des angezeigten Datentyps vor.'
 
 - Class: text
-  Output: 'Stimmt genau! Jede Spalte eines Dataframes ist ein einzelner Vektor (mit einem bestimmten Datentyp). Diese Dollarzeichen sind sehr hilfreich, um einzelne Variablen eines Dataframes auszuwählen. Du möchtest beispielsweise die Variable „altit“ (was für Höhe steht) aus dem Datensatz auswählen? Dazu musst du zunächst einen Verweis auf den Datensatz herstellen, was ganz einfach durch die Eingabe von "af" geschieht. Wenn du dahinter ein Dollarzeichen eingibst, werden bereits alle Spaltennamen angezeigt (wenn nicht, drücke die Tab-Taste). Durch eine derartige Auswahl der Variable werden einige Tippfehler vermieden.'
+  Output: 'Stimmt genau! Jede Spalte eines Dataframes ist ein einzelner Vektor (mit einem bestimmten Datentyp). Diese Dollarzeichen sind sehr hilfreich, um einzelne Variablen eines Dataframes auszuwählen. Du möchtest beispielsweise die Variable „altit“ (was für Höhe - altitude - steht) aus dem Datensatz auswählen? Dazu musst du zunächst einen Verweis auf den Datensatz herstellen, was ganz einfach durch die Eingabe von "af" geschieht. Wenn du dahinter ein Dollarzeichen eingibst, werden bereits alle Spaltennamen angezeigt (wenn nicht, drücke die Tab-Taste). Durch eine derartige Auswahl der Variable werden einige Tippfehler vermieden.'
 
 - Class: mult_question
   Output: 'Das waren viele Informationen auf einmal. Kannst du dir vorstellen, wie die Funktion aussehen muss?'
@@ -293,10 +292,10 @@
   Hint: 'Gib aspect <- af[, 5:7] in die Konsole ein, um alle Zeilen der Spalten 5 bis 7 (gekennzeichnet durch den Doppelpunkt) auszuwählen und in aspect zu speichern.'
   
 - Class: cmd_question
-  Output: 'Nice. Schau dir jetzt deine gloable Umgebung an. Werfe dabei einen kurzen Blick in die Tabelle, indem du sie über die Globale Umgebung öffnest.'    
+  Output: 'Nice. Schau dir jetzt dein "Global Environment" an. Werfe dabei einen kurzen Blick in die Tabelle, indem du sie über das "Global Environment" öffnest.'    
   CorrectAnswer: View(af)
   AnswerTests: omnitest(correctVal = View(af))
-  Hint: 'Klicke auf den dataframe in der Umgebung oder gebe View(af) ein. Der Anfangsbuchstabe muss groß geschrieben werden. Verwende keine Leerzeichen.'
+  Hint: 'Klicke auf den Dataframe im im "Environment" oder gebe View(af) ein. Der Anfangsbuchstabe muss groß geschrieben werden. Verwende keine Leerzeichen.'
   
 - Class: text
   Output: 'Du hast gerade einen neuen dataframe erstellt, der ausschließlich diese drei ausgewählten Variablen enthält. Auf diese Weise kannst du deine Daten bei Bedarf einfach unterteilen.'
@@ -350,7 +349,7 @@
 
   
 - Class: text
-  Output: 'Wichtig ist immer, sich ein Bild von den Datenreihen zu machen, bevor man damit rechnet. Nachdem du eine Datei in R eingelesen hast, kannst du dir einige Informationen mit den Funktionen str(), head() und summary() anzeigen lassen. Du kannst es dir angewöhnen, diese Funktionen nach dem Einlesen von Daten immer zuerst auszuführen, um zu prüfen, ob das Einlesen korrekt funktioniert hat. Zusätzlich kannst du dir auch die gesamte Tabelle anzeigen lassen, indem du über die globale Umgebung den View()-Tab öffnest.'
+  Output: 'Wichtig ist immer, sich ein Bild von den Datenreihen zu machen, bevor man damit rechnet. Nachdem du eine Datei in R eingelesen hast, kannst du dir einige Informationen mit den Funktionen str(), head() und summary() anzeigen lassen. Du kannst es dir angewöhnen, diese Funktionen nach dem Einlesen von Daten immer zuerst auszuführen, um zu prüfen, ob das Einlesen korrekt funktioniert hat. Zusätzlich kannst du dir auch die gesamte Tabelle anzeigen lassen, indem du über das "Global Environment" den View()-Tab öffnest.'
 
 - Class: text
   Output: 'Herzlichen Glückwunsch – du hast diese Lektion erfolgreich abgeschlossen! Im letzten Abschnitt bist du bereits ein wenig in die ersten Statistikinhalte eingetaucht. Zum Unterteilen von Datenselektionen sind logische Bedingungen sehr nützlich. Das kannst du in der nächsten Lektion weiter üben.'

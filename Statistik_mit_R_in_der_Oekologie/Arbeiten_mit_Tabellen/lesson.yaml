@@ -33,7 +33,7 @@
   Output: 'R ist mit verschiedenen Dateiformaten kompatibel. Eingelesen werden können Textdateien (.txt), Excel-Tabellen (.xls, .xlsx) und CSV-Dateien (.csv). Der in dieser Lektion verwendete Agroforst-Datensatz (ein Beispieldatensatz aus einer Agroforst-Studie in Kaule, Nepal) wird in einem CSV-Format gespeichert. Für den Import in R ist das CSV-Format eine wirklich gute Wahl, da es sehr einfach und exakt funktioniert.'
 
 - Class: exact_question
-  Output: 'Betrachte zunächst den Agroforst-Datensatz als CSV-Datei. Du solltest die Datei agroforest_var.csv im Unterordner /data/raw Ihres Projektordners finden. Öffne die Datei mit Microsoft Excel/LibreOffice Calc. Wie viele Zeilen enthalten die Daten?'
+  Output: 'Betrachte zunächst den Agroforst-Datensatz als CSV-Datei. Du solltest die Datei agroforest_var.csv im Unterordner /data/ deines Projektordners finden. Öffne die Datei mit Microsoft Excel/LibreOffice Calc. Wie viele Zeilen enthalten die Daten?'
   CorrectAnswer: 96
   AnswerTests: omnitest(correctVal = 96)
   Hint: 'Blätter zur letzten Zeile in der Datei. Zeilen scrollen nach unten, Spalten scrollen nach rechts.'
@@ -63,7 +63,7 @@
   Output: 'In Deutschland wird normalerweise das Komma als Dezimaltrennzeichen und die Leertaste als Spaltentrennzeichen verwendet.' 
 
 - Class: text_question
-  Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Du kannst das Zeichen einfach als Lösung eingeben. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor").'
+  Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Du kannst das Zeichen einfach als Lösung eingeben. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor") oder auch direkt in RStudio (Im "Files" Tab Linksklick auf die Datei, dann "View File").'
   CorrectAnswer: '.'
   AnswerTests: omnitest(correctVal = '.')
   Hint: 'Sie weist entweder ein "," oder ein "." auf. Gänsefüßchen sind nicht erforderlich.'
@@ -95,13 +95,13 @@
   Hint: 'Gib TRUE oder FALSE ein"'
   
 - Class: text
-  Output: 'Zunächst muss der Speicherort angegeben werden, an dem sich die Datei befindet. Normalerweise tut man das mit dem Argument file= "Laufwerk/Ordner/Datei". Da wir unser Projektverzeichnis als Arbeitsverzeichnis definiert haben, müssen wir nur die relative Position der Datei zum Basisordner unseres Arbeitsverzeichnisses definieren. Wenn du also die CSV-Datei in den "data/raw"-Unterordner kopiert hast, ist das "data/raw/file". Das ist wirklich praktisch, da es auf allen Computern, auf denen dieses Projekt läuft, gleich ist - du kannst den Ordner einfach auf einen USB-Stick kopieren oder in der Cloud teilen, es wird immer funktionieren!'
+  Output: 'Zunächst muss der Speicherort angegeben werden, an dem sich die Datei befindet. Normalerweise tut man das mit dem Argument file= "Laufwerk/Ordner/Datei". Da wir unser Projektverzeichnis als Arbeitsverzeichnis definiert haben, müssen wir nur die relative Position der Datei zum Basisordner unseres Arbeitsverzeichnisses definieren. Wenn du also die CSV-Datei in den "data/"-Unterordner kopiert hast, ist das "data/file". Das ist wirklich praktisch, da es auf allen Computern, auf denen dieses Projekt läuft, gleich ist - du kannst den Ordner einfach auf einen USB-Stick kopieren oder in der Cloud teilen, es wird immer funktionieren!'
 
 - Class: text
   Output: 'Jetzt hast du alle Informationen, die du zum Einlesen benötigst.'
   
 - Class: text
-  Output: 'Die Funktion zum Einlesen der Agroforstdatendatei könnte also so aussehen: read.table(file = "/data/raw/agroforest_var.csv", header = TRUE, sep = ",", dec = ".")'
+  Output: 'Die Funktion zum Einlesen der Agroforstdatendatei könnte also so aussehen: read.table(file = "/data/agroforest_var.csv", header = TRUE, sep = ",", dec = ".")'
   
 
 - Class: cmd_question
@@ -170,7 +170,7 @@
   Hint: 'Benutze die Funktion now(af).'
   
 - Class: exact_question
-  Output: 'Wie viele Linien gibt es?'
+  Output: 'Wie viele Zeilen gibt es?'
   CorrectAnswer: 95
   AnswerTests: omnitest(correctVal = 95)
   Hint: 'Gebe den Befehl nrow(af) ein und drücke "Enter". Nun wird die Anzahl der Zeilen angegeben. Gebe die richtige Nummer in die Konsole ein.'
@@ -221,9 +221,9 @@
  
 - Class: mult_question 
   Output: 'Was steht also zuerst in den eckigen Klammern?'
-  CorrectAnswer: 'Reihen'
-  AnswerChoices: 'Reihen; Spalten' 
-  AnswerTests: omnitest(correctVal='Reihen')
+  CorrectAnswer: 'Zeilen'
+  AnswerChoices: 'Zeilen; Spalten' 
+  AnswerTests: omnitest(correctVal='Zeilen')
   Hint: 'Scrolle in der Konsole ein wenig nach oben. Dort kannst du die Antwort in den vorherigen Abfragen sehen. Ansonsten schau dir die Tabelle nochmal an und lies die Zeilen/Spalten. In welcher Reihe findet sich die Zahl 190 und wo in den eckigen Klammern steht diese Reihennummer?'
   
 - Class: exact_question
@@ -233,10 +233,10 @@
   Hint: 'Gib x <-af[10, 5] ein. Der Wert 190 sollte nun als Variable x im "Global Environment" erscheinen.'
   
 - Class: mult_question 
-  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in das "Global Environment" laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 119 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
-  CorrectAnswer: "total_cov <- af[1:119, 10]"
-  AnswerChoices: "total_cov <- af[1:119, 10]; total_cov <- af[1, 10]" 
-  AnswerTests: omnitest(correctVal='total_cov <- af[1:119, 10]')
+  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in das "Global Environment" laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 95 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
+  CorrectAnswer: "total_cov <- af[1:95, 10]"
+  AnswerChoices: "total_cov <- af[1:95, 10]; total_cov <- af[1, 10]" 
+  AnswerTests: omnitest(correctVal='total_cov <- af[1:95, 10]')
   Hint: 'Der Doppelpunkt symbolisiert ein „bis zu“.'
   
 - Class: cmd_question
@@ -280,22 +280,22 @@
   
 - Class: mult_question
   Output: 'Was jetzt in der Konsole angezeigt wird, ist der Inhalt der Variable „altit“ als numerischer Vektor, der in Spalte 4 unseres dataframes steht. Wenn du darüber nachdenkst, was du zuvor über die Auswahl von Daten aus einem Dataframe gelernt hast, wie kannst du die gleiche Auswahl mit den eckigen Klammern [] durchführen?'
-  AnswerChoices: 'af[1:119, 4]; af[4, 1:119]; af[4]'
-  CorrectAnswer: 'af[1:119, 4]'
-  AnswerTests: omnitest(correctVal='af[1:119, 4]')
+  AnswerChoices: 'af[1:95, 4]; af[4, 1:95]; af[4]'
+  CorrectAnswer: 'af[1:95, 4]'
+  AnswerTests: omnitest(correctVal='af[1:95, 4]')
   Hint: 'Du kannst in der Konsole nach oben scrollen und die vorherigen Beschreibungen erneut lesen. An welcher Position in den Klammern stehen Zeilen und Spalten?'
   
 - Class: cmd_question
-  Output: 'Wenn du alle Zeilen einer Spalte auswählen möchtest, kannst du die passende Seite des Kommas innerhalb der eckigen Klammer auch einfach leer lassen. af[1:119, 4] macht genau dasselbe wie af[, 4] (umgekehrt ist dasselbe möglich, wenn alle Spalten einer Zeile ausgewählt werden sollen). Wir werden das oft brauchen, also um es noch einmal zu wiederholen: Versuche, alle Zeilen der Spalten 5 bis 7 auszuwählen und speicher das Ergebnis in einem neuen Objekt namens "aspect"'
+  Output: 'Wenn du alle Zeilen einer Spalte auswählen möchtest, kannst du die passende Seite des Kommas innerhalb der eckigen Klammer auch einfach leer lassen. af[1:95, 4] macht genau dasselbe wie af[, 4] (umgekehrt ist dasselbe möglich, wenn alle Spalten einer Zeile ausgewählt werden sollen). Wir werden das oft brauchen, also um es noch einmal zu wiederholen: Versuche, alle Zeilen der Spalten 5 bis 7 auszuwählen und speicher das Ergebnis in einem neuen Objekt namens "aspect"'
   CorrectAnswer: aspect <- af[, 5:7]
-  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:119, 5:7]', 'aspect <- af[, c(5,6,7)]')
+  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:95, 5:7]', 'aspect <- af[, c(5,6,7)]')
   Hint: 'Gib aspect <- af[, 5:7] in die Konsole ein, um alle Zeilen der Spalten 5 bis 7 (gekennzeichnet durch den Doppelpunkt) auszuwählen und in aspect zu speichern.'
   
 - Class: cmd_question
-  Output: 'Nice. Schau dir jetzt dein "Global Environment" an. Werfe dabei einen kurzen Blick in die Tabelle, indem du sie über das "Global Environment" öffnest.'    
-  CorrectAnswer: View(af)
-  AnswerTests: omnitest(correctVal = View(af))
-  Hint: 'Klicke auf den Dataframe im im "Environment" oder gebe View(af) ein. Der Anfangsbuchstabe muss groß geschrieben werden. Verwende keine Leerzeichen.'
+  Output: 'Schön. Schau dir jetzt dein "Global Environment" an. Werfe dabei einen kurzen Blick in die Tabelle, indem du sie über das "Global Environment" öffnest.'    
+  CorrectAnswer: View(aspect)
+  AnswerTests: omnitest(correctVal = View(aspect))
+  Hint: 'Klicke auf den Dataframe im im "Environment" oder gebe View(aspect) ein. Der Anfangsbuchstabe muss groß geschrieben werden. Verwende keine Leerzeichen.'
   
 - Class: text
   Output: 'Du hast gerade einen neuen dataframe erstellt, der ausschließlich diese drei ausgewählten Variablen enthält. Auf diese Weise kannst du deine Daten bei Bedarf einfach unterteilen.'

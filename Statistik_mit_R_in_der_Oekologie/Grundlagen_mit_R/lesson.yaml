@@ -9,7 +9,7 @@
   Output: 'Willkommen zur Einführungslesson des Kurses "Statistik mit R". In dieser Lesson kannst Du Dich anhand ganz einfacher Rechnungen mit der grundlegenden Funktionsweise von R und den "swirl"-Lessons vertraut machen. Um fortzufahren, kannst Du mit dem Cursor in die "Console" (das ist das Fenster unten links, in dem Du diesen Text gerade liest) hinter die drei Punkte "..." klicken und anschließend die Taste "Enter" drücken.'
 
 - Class: text
-  Output: 'Wenn Du Fragen oder Probleme hast, stelle sie jederzeit den Tutoren und Tutorinnen. Um mit der Lesson fortzufahren, drücke "Enter".'
+  Output: 'Wenn Du Fragen oder Probleme hast, stelle sie jederzeit den Tutor*innen. Um mit der Lesson fortzufahren, drücke "Enter".'
   
 - Class: text
   Output: 'Zunächst noch ein paar kurze Anmerkungen zur Funktionsweise dieses Kurses. Nachfolgend werden Dir verschiedene Fragen gestellt und Informationen angezeigt werden. Je nachdem was Dir angezeigt wird, kannst Du unterschiedlich fortfahren. Mal kannst Du mit "Enter" fortfahren. Mal ist es erforderlich, eine Funktion oder Buchstaben einzugeben, der eine Multiple-Choice-Frage beantwortet. Um fortzufahren, drücke die Taste "Enter".'
@@ -92,9 +92,13 @@
 
 - Class: text
   Output: 'Wie du jetzt siehst, wurde der Wert des Objekts x mit dem Wert des Objekts y multipliziert. Jetzt erstellen wir
-    eine kleine Sammlung aus Zahlen und speichern diese als Vektor. Jedes Objekt das eine Ansammlung an Daten enthält wird als
+    eine kleine Sammlung aus Zahlen und speichern diese als sogenannten Vektor. Jedes Objekt das eine Ansammlung an Daten enthält wird als
     Datenstruktur bezeichnet und numerischere Vektoren sind die simpelste Form dieser Datenstrukturen in R. Genau genommen sind sogar
     Objekte mit nur einer einzigen Zahl Vektoren mit der Länge von eins.'
+
+- Class: text
+  Output: 'Vielleicht verbindest du mit dem Begriff Vektor auch die Pfeile aus der analytischen Geometrie, die durch Zahlenpaare beschrieben werden.
+  Bei der Datenverarbeitung beschreibt der Begriff Vektor dagegen eine Auflistung von Datenfelder bzw. Zahlen, sogenannte Tupel.'
 
 - Class: cmd_question
   Output: 'Der einfachste Weg um einen Vektor zu erstellen, ist die c() function, wobei das c für 

@@ -12,7 +12,7 @@
     unseren Kurs erstellst. Außerdem solltest du alle Daten herunterladen, aus dem ZIP-Ordner extrahieren und in einen eigenen Unterordner "data"  
     in deinem Projektordner speichern. Wenn du das noch nicht getan hast, kannst du diese Lektion trotzdem 
     durchführen, solange du Zugriff auf den Agroforstdatensatz hast. Wende dich bei Fragen oder Problemen 
-    bitte an die Tutoren und Tutorinnen!'
+    bitte an die Tutor*innen!'
 
 - Class: text
   Output: 'Wenn du einen Kurs abbrechen möchtest, kannst du "bye()" eingeben oder die Escape-Taste drücken. Wenn eine dieser Funktionen nicht funktioniert, versuche die andere Variante. Auf diese Weise beendest du das Paket "swirl". Um "swirl" erneut zu starten, beginne erneut mit der Eingabe von swirl().'
@@ -34,8 +34,8 @@
 
 - Class: exact_question
   Output: 'Betrachte zunächst den Agroforst-Datensatz als CSV-Datei. Du solltest die Datei agroforest_var.csv im Unterordner /data/ deines Projektordners finden. Öffne die Datei mit Microsoft Excel/LibreOffice Calc. Wie viele Zeilen enthalten die Daten?'
-  CorrectAnswer: 96
-  AnswerTests: omnitest(correctVal = 96)
+  CorrectAnswer: 97
+  AnswerTests: omnitest(correctVal = 97)
   Hint: 'Blätter zur letzten Zeile in der Datei. Zeilen scrollen nach unten, Spalten scrollen nach rechts.'
 
 - Class: text_question
@@ -86,7 +86,7 @@
   Hint: 'Spaltentrennzeichen werden "separators" genannt.'
 
 - Class: text
-  Output: 'Fertig! Als Dezimaltrennzeichen für diese Datei geben wir also dec="." und als Spaltentrenner sep=";".'
+  Output: 'Fertig! Als Dezimaltrennzeichen für diese Datei geben wir also dec="." und als Spaltentrenner sep=",".'
 
 - Class: text_question
   Output: 'Du hast vorhin herausgefunden, dass es Spaltenüberschriften in der zu lesenden Datei gibt. In der Hilfe siehst du, dass Informationen zum Header angegeben werden können. header= "TRUE" oder header= "FALSE" - Welches Argument musst du angeben? TRUE oder FALSE?'
@@ -171,8 +171,8 @@
   
 - Class: exact_question
   Output: 'Wie viele Zeilen gibt es?'
-  CorrectAnswer: 95
-  AnswerTests: omnitest(correctVal = 95)
+  CorrectAnswer: 96
+  AnswerTests: omnitest(correctVal = 96)
   Hint: 'Gebe den Befehl nrow(af) ein und drücke "Enter". Nun wird die Anzahl der Zeilen angegeben. Gebe die richtige Nummer in die Konsole ein.'
 
 - Class: mult_question
@@ -205,7 +205,7 @@
 
 
 - Class: text
-  Output: 'Gerade bei einer so umfangreichen Tabelle ist es sehr wichtig, einzelne Werte anzuzeigen und zu speichern, um damit in R zu arbeiten. Einzelne Werte aus einer Tabelle können durch Angabe der Nummern der entsprechenden Zeile und Spalte ausgewählt werden.'
+  Output: 'Gerade bei einer so umfangreichen Tabelle ist es manchmal notwendig, einzelne Werte anzuzeigen und zu speichern, um damit in R zu arbeiten. Einzelne Werte aus einer Tabelle können durch Angabe der Nummern der entsprechenden Zeile und Spalte ausgewählt werden.'
 
 - Class: cmd_question
   Output: 'Nun soll R einen Wert aus den af-Daten ausgeben. Du kannst einfach af[10, 5] in die Konsole eingeben oder kopieren.' 
@@ -233,10 +233,10 @@
   Hint: 'Gib x <-af[10, 5] ein. Der Wert 190 sollte nun als Variable x im "Global Environment" erscheinen.'
   
 - Class: mult_question 
-  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in das "Global Environment" laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 95 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
-  CorrectAnswer: "total_cov <- af[1:95, 10]"
-  AnswerChoices: "total_cov <- af[1:95, 10]; total_cov <- af[1, 10]" 
-  AnswerTests: omnitest(correctVal='total_cov <- af[1:95, 10]')
+  Output: 'Auf diese Weise kannst du auch einzelne Datenreihen in das "Global Environment" laden. Dazu wählst du einen neuen Objektnamen, beispielsweise die Spaltenüberschrift, und verwendest wie gewohnt den Pfeil als Zuweisung. Wie extrahiert man die Zeilen 1 bis 96 aus Spalte 10? Ein Doppelpunkt bedeutet „bis zu“.'
+  CorrectAnswer: "total_cov <- af[1:96, 10]"
+  AnswerChoices: "total_cov <- af[1:96, 10]; total_cov <- af[1, 10]" 
+  AnswerTests: omnitest(correctVal='total_cov <- af[1:96, 10]')
   Hint: 'Der Doppelpunkt symbolisiert ein „bis zu“.'
   
 - Class: cmd_question
@@ -246,7 +246,7 @@
   Hint: 'Gib str(af) in die Konsole ein.'
   
 - Class: mult_question 
-  Output: 'In der Konsole wird oberhalb dieses Textes eine Tabelle angezeigt. Ganz am Anfang der Tabelle wird angegeben, dass es sich um einen "dataframe" handelt, der 119 Zeilen (Beobachtungen) und 31 Spalten (Variablen) enthält. Aber was verbirgt sich in den Zeilen darunter, hinter den Dollarzeichen?'
+  Output: 'In der Konsole wird oberhalb dieses Textes eine Tabelle angezeigt. Ganz am Anfang der Tabelle wird angegeben, dass es sich um einen "dataframe" handelt, der 96 Zeilen (Beobachtungen) und 31 Spalten (Variablen) enthält. Aber was verbirgt sich in den Zeilen darunter, hinter den Dollarzeichen?'
   CorrectAnswer: 'Spaltennamen'
   AnswerChoices: 'Spaltennamen; Zeilennamen' 
   AnswerTests: omnitest(correctVal='Spaltennamen')
@@ -280,15 +280,15 @@
   
 - Class: mult_question
   Output: 'Was jetzt in der Konsole angezeigt wird, ist der Inhalt der Variable „altit“ als numerischer Vektor, der in Spalte 4 unseres dataframes steht. Wenn du darüber nachdenkst, was du zuvor über die Auswahl von Daten aus einem Dataframe gelernt hast, wie kannst du die gleiche Auswahl mit den eckigen Klammern [] durchführen?'
-  AnswerChoices: 'af[1:95, 4]; af[4, 1:95]; af[4]'
-  CorrectAnswer: 'af[1:95, 4]'
-  AnswerTests: omnitest(correctVal='af[1:95, 4]')
+  AnswerChoices: 'af[1:96, 4]; af[4, 1:96]; af[4]'
+  CorrectAnswer: 'af[1:96, 4]'
+  AnswerTests: omnitest(correctVal='af[1:96, 4]')
   Hint: 'Du kannst in der Konsole nach oben scrollen und die vorherigen Beschreibungen erneut lesen. An welcher Position in den Klammern stehen Zeilen und Spalten?'
   
 - Class: cmd_question
-  Output: 'Wenn du alle Zeilen einer Spalte auswählen möchtest, kannst du die passende Seite des Kommas innerhalb der eckigen Klammer auch einfach leer lassen. af[1:95, 4] macht genau dasselbe wie af[, 4] (umgekehrt ist dasselbe möglich, wenn alle Spalten einer Zeile ausgewählt werden sollen). Wir werden das oft brauchen, also um es noch einmal zu wiederholen: Versuche, alle Zeilen der Spalten 5 bis 7 auszuwählen und speicher das Ergebnis in einem neuen Objekt namens "aspect"'
-  CorrectAnswer: aspect <- af[, 5:7]
-  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:95, 5:7]', 'aspect <- af[, c(5,6,7)]')
+  Output: 'Wenn du alle Zeilen einer Spalte auswählen möchtest, kannst du die passende Seite des Kommas innerhalb der eckigen Klammer auch einfach leer lassen. af[1:96, 4] macht genau dasselbe wie af[, 4] (umgekehrt ist dasselbe möglich, wenn alle Spalten einer Zeile ausgewählt werden sollen). Wir werden das oft brauchen, also um es noch einmal zu wiederholen: Versuche, alle Zeilen der Spalten 5 bis 7 auszuwählen und speicher das Ergebnis in einem neuen Objekt namens "aspect"'
+  CorrectAnswer: aspect <- af[, 5:7] 
+  AnswerTests: any_of_exprs('aspect <- af[, 5:7]', 'aspect <- af[1:96, 5:7]', 'aspect <- af[, c(5,6,7)]')
   Hint: 'Gib aspect <- af[, 5:7] in die Konsole ein, um alle Zeilen der Spalten 5 bis 7 (gekennzeichnet durch den Doppelpunkt) auszuwählen und in aspect zu speichern.'
   
 - Class: cmd_question
@@ -326,7 +326,7 @@
   Output: 'Überprüfen wir nun noch einmal die Struktur des Dataframes. Verwende die zuvor erlernte Funktion.'
   CorrectAnswer: str(af)
   AnswerTests: omnitest('str(af)')
-  Hint: 'Gebe str(af) in die Konsole ein.'
+  Hint: 'Wende die Funktion str() auf den Dataframe an.'
   
 - Class: mult_question 
   Output: 'Die verschiedenen Kategorien eines Faktors werden Stufen genannt. In welche Faktorstufen wird $fama eingeteilt? Betrachte die Struktur.'
@@ -343,11 +343,20 @@
 
 - Class: exact_question
   Output: 'Du siehst, dass eine zusammenfassende Statistik für jede Variable ausgegeben wurde. Bei numerischen Variablen ist dies z.B. die Mittel-, Median-, Min- oder Max-Werte. Bei kategorialen Variablen (Faktoren) erhält man die Anzahl der Beobachtungen pro Faktorstufe. Wie viele Beobachtungen wurden in der Kategorie „C“ der Variablen „fama“ gemacht?'  
-  CorrectAnswer: 31
-  AnswerTests: omnitest(correctVal = 31)
+  CorrectAnswer: 32
+  AnswerTests: omnitest(correctVal = 32)
   Hint: 'Schau dir die Variable fama genauer an. Dort siehst du die Anzahl der Beobachtungen pro Faktorstufe.' 
-
   
+- Class: mult_question 
+  Output: 'Vielleicht ist die aufgefallen, dass bei den meisten Variablen "NAs: 1" aufgeführt ist. Wofür steht das NA wohl?'
+  CorrectAnswer: 'not available'
+  AnswerChoices: 'not available; not applicable; not allowed; not accepted '
+  AnswerTests: omnitest(correctVal='not available')
+  Hint: 'NA wird in R für fehlende Werte verwendet.'
+  
+- Class: text
+  Output: 'Fehlende Werte werden in R durch NA (not available) repräsentiert. Wenn du dir die Tabelle anschaust, wirst du die Werte in der gleichen Beobachtung finden - offenbar sind hier Daten verloren gegangen. NA-Werte haben eine eigene Funktionalität. Häufig wird das Ergebnis einer Operation, in der NA vorkommen ebenfalls auf NA gesetzt.'
+
 - Class: text
   Output: 'Wichtig ist immer, sich ein Bild von den Datenreihen zu machen, bevor man damit rechnet. Nachdem du eine Datei in R eingelesen hast, kannst du dir einige Informationen mit den Funktionen str(), head() und summary() anzeigen lassen. Du kannst es dir angewöhnen, diese Funktionen nach dem Einlesen von Daten immer zuerst auszuführen, um zu prüfen, ob das Einlesen korrekt funktioniert hat. Zusätzlich kannst du dir auch die gesamte Tabelle anzeigen lassen, indem du über das "Global Environment" den View()-Tab öffnest.'
 

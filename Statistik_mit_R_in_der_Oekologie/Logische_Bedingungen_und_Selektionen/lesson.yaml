@@ -147,7 +147,7 @@
 - Class: cmd_question
   Output: 'Kannst du herausfinden, wie wir das 3., 5. und 7. Element von "north" herausfiltern würden? Hinweis -- Verwende die Funktion c(), um mit Hilfe der Elementnummern einen numerischen Indexvektor zu definieren.'
   CorrectAnswer: north[c(3, 5, 7)]
-  AnswerTests: omnitest(correctExpr='north[c(3, 5, 7)]')
+  AnswerTests: any_of_exprs('north[c(3, 5, 7)]', 'c(north[3], north[5], north[7])')
   Hint: 'Erstelle einen Indexvektor mit c(3, 5, 7) und setze diesen dann in die eckigen Klammern.'
 
 - Class: text
@@ -187,7 +187,7 @@
 - Class: cmd_question
   Output: 'Erinnere dich, wie du einen einzelnen Wert aus dem af-Dataframe ausgewählt hast. Versuche, die zweite Zeile der Spalte area_nr auszuwählen.'  
   CorrectAnswer: af[2, 1]
-  AnswerTests: any_of_exprs('af$area_nr[2]', 'af[2, 1]')
+  AnswerTests: any_of_exprs('af$area_nr[2]', 'af[2, 1]', af[2, "area_nr"])
   Hint: 'In welcher Spalte steht die Variable area_nr? Du möchtest die zweite Zeile dieser Spalte auswählen.'
   
 - Class: mult_question

@@ -65,7 +65,7 @@
 - Class: text_question
   Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Gibt als Lösung einfach das Zeichen ein. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor") oder auch direkt in RStudio (Im "Files" Tab Linksklick auf die Datei, dann "View File").'
   CorrectAnswer: '.'
-  AnswerTests: any_of_exprs('.', 'Punkt', 'punkt')
+  AnswerTests: omnitest(correctVal='.')
   Hint: 'Sie weist entweder ein "," oder ein "." auf. Gänsefüßchen sind nicht erforderlich.'
 
 - Class: text
@@ -75,7 +75,7 @@
   Output: 'Durch welches Zeichen werden die einzelnen Werte getrennt?'
   CorrectAnswer: 'Komma'
   AnswerChoices: 'Semikolon; Komma; Punkt'
-  AnswerTests: any_of_exprs(',', 'Komma', 'komma')
+  AnswerTests: omnitest(correctVal='Komma')
   Hint: 'Schau nochmal in den Editor.'
 
 - Class: mult_question

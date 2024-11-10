@@ -31,7 +31,7 @@
   Output: 'Du teilst R mit, dass du nur einige bestimmte Elemente (d. h. eine „Teilmenge“) aus einem Vektor auswählen möchten, indem du einen „Indexvektor“ in eckige Klammern unmittelbar nach dem Namen des Vektors setzen.'
 
 - Class: cmd_question
-  Output: 'Versuche als einfaches Beispiel north[1:10], um die ersten zehn Elemente von x anzuzeigen.'
+  Output: 'Versuche als einfaches Beispiel north[1:10], um die ersten zehn Elemente von north anzuzeigen.'
   CorrectAnswer: north[1:10]
   AnswerTests: omnitest(correctExpr='north[1:10]')
   Hint: 'Mit north[1:10] lannst du dir die ersten zehn Elemente von north anzeigen lassen.'

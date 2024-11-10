@@ -63,9 +63,9 @@
   Output: 'In Deutschland wird normalerweise das Komma als Dezimaltrennzeichen und die Leertaste als Spaltentrennzeichen verwendet.' 
 
 - Class: text_question
-  Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Du kannst das Zeichen einfach als Lösung eingeben. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor") oder auch direkt in RStudio (Im "Files" Tab Linksklick auf die Datei, dann "View File").'
+  Output: 'Wenn du dir noch einmal die CSV-Datei (Comma-Separated-Value) ansiehst, welches Dezimaltrennzeichen wird hier verwendet? Gibt als Lösung einfach das Zeichen ein. Da Excel manchmal seltsame Datentransformationen von CSV-Dateien automatisch durchführt, kann es hilfreich sein, die Datei im einfachen Windows-Editor zu öffnen (Rechtsklick im Explorer, dann "Öffnen mit - Editor") oder auch direkt in RStudio (Im "Files" Tab Linksklick auf die Datei, dann "View File").'
   CorrectAnswer: '.'
-  AnswerTests: omnitest(correctVal = '.')
+  AnswerTests: any_of_exprs('.', 'Punkt', 'punkt')
   Hint: 'Sie weist entweder ein "," oder ein "." auf. Gänsefüßchen sind nicht erforderlich.'
 
 - Class: text
@@ -75,7 +75,7 @@
   Output: 'Durch welches Zeichen werden die einzelnen Werte getrennt?'
   CorrectAnswer: 'Komma'
   AnswerChoices: 'Semikolon; Komma; Punkt'
-  AnswerTests: omnitest(correctVal='Komma')
+  AnswerTests: any_of_exprs(',', 'Komma', 'komma')
   Hint: 'Schau nochmal in den Editor.'
 
 - Class: mult_question
@@ -301,7 +301,7 @@
   Output: 'Du hast gerade einen neuen dataframe erstellt, der ausschließlich diese drei ausgewählten Variablen enthält. Auf diese Weise kannst du deine Daten bei Bedarf einfach unterteilen.'
 
 - Class: mult_question 
-  Output: 'Es gibt einen weiteren spezifischen Datentyp für nominale Variablen in R, der als "Faktor/factor" bezeichnet wird. Dies ist sehr praktisch für weitere Analysen, da man den Datensatz so gruppieren kann und Analysen die Variable richtig interpretieren. Welche der Variablen im Datensatz sollte als "factor" interpretiert werden?'
+  Output: 'Es gibt einen weiteren spezifischen Datentyp für nominale Variablen in R, der als "Faktor/factor" bezeichnet wird. Dies ist sehr praktisch, da weitere Analysen die Variable anschließend richtig interpretieren. Welche der Variablen im Datensatz sollte als "factor" interpretiert werden?'
   CorrectAnswer: 'fama'
   AnswerChoices: 'fama; area_nr; total_cov; altit'
   AnswerTests: omnitest(correctVal='fama')
@@ -311,10 +311,10 @@
   Output: 'Du hast Recht! Die "fama"-Variable scheint verschiedene Kategorien zu enthalten, die durch Buchstaben dargestellt werden. Wenn du die Excel-Tabelle agroforest.xls öffnest und in das Metadatenblatt schaust, siehst du, dass die Buchstaben verschiedene Arten der Betriebsführung darstellen. Die "area_nr" ist ebenfalls ein Zeichenvektor, enthält aber anstelle von Kategorien eine eindeutige Parzellen-ID. Allgemein kann ein Faktor (= nominale/kategoriale Variable) ein beliebiger Datentyp sein, solange er Kategorien repräsentiert. Zum Beispiel die drei Arten der landwirtschaftlichen Betriebsführung könnten genauso gut mit „1“, „2“ und „3“ nummeriert werden und immer noch ein Faktor sein. Aber woher weiß R, welche Variable ein Faktor ist? Wir müssen das dem Programm sagen!'
   
 - Class: cmd_question
-  Output: 'Um einer Variablen den Datentyp "factor" zuzuweisen, können Sie die Funktion as.factor() verwenden. Gebe as.factor(af$fama) ein.'
+  Output: 'Um einer Variablen den Datentyp "factor" zuzuweisen, kannst du die Funktion as.factor() verwenden. Gib as.factor(af$fama) ein.'
   CorrectAnswer: as.factor(af$fama)
   AnswerTests: omnitest(correctExpr = 'as.factor(af$fama)')
-  Hint: 'Gebe as.factor(af$fama) in die Konsole ein.'
+  Hint: 'Gib as.factor(af$fama) in die Konsole ein.'
   
 - Class: cmd_question
   Output: 'Nun hast du die Variable "fama" als Faktor definiert. Aber wir sollten die Zuordnung im dataframe ändern, um ihn für weitere Analysen bereit zu haben. Du kannst das tun, indem du die Variable innerhalb des dataframes mit dem Zuweisungspfeil überschreibst. Gib af$fama <-as.factor(af$fama) ein.'
